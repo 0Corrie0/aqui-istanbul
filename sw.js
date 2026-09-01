@@ -1,4 +1,4 @@
-const CACHE = 'aqui-istanbul-v1';
+const CACHE = 'aqui-istanbul-v3';
 const ASSETS = [
   './',
   './index.html',

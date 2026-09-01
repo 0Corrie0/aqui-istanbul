@@ -3,191 +3,198 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0E2C4B">
+<meta name="theme-color" content="#0A0812">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="AQUI Istanbul">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
-<title>AQUI Istanbul</title>
+<title>AQUI · İstanbul</title>
 <style>
 :root{
-  --slip:#FBF8F3; --cobalt:#0E2C4B; --iznik:#1D5FA8; --turq:#1F7A7A;
-  --bole:#A83A32; --brass:#9A7628; --ink:#1A1D22; --mute:#6C7480;
-  --line:#DED5C6; --card:#FFFFFF;
+  --night:#0A0812; --panel:#14101F; --panel2:#1B1628; --line:#2B2440;
+  --gold:#C9A961; --gold-dim:#8F7838; --moon:#A9B8E8; --crystal:#D8C3E8;
+  --text:#EDE8F5; --dim:#948CAD; --warn:#E0A458; --danger:#E38096; --ok:#8FD9B6;
   --serif: ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-  --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --mono: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--slip);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
-button,input,select,textarea{font-family:inherit;font-size:inherit}
+body{margin:0;background:var(--night);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6}
+button,input,textarea{font-family:inherit;font-size:inherit;color:inherit}
 
-header.top{background:var(--cobalt);color:#fff;padding:24px 18px 20px;
-  padding-top:calc(24px + env(safe-area-inset-top));
-  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 4px),
-                   repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 4px)}
-.kick{font-family:var(--serif);font-style:italic;font-size:14px;color:#9FC2E4;margin:0 0 3px}
-header.top h1{font-family:var(--serif);font-weight:600;font-size:35px;line-height:1;margin:0;letter-spacing:-.015em}
-header.top h1 span{display:block;font-size:17px;font-weight:400;font-style:italic;color:#C9DCF0;letter-spacing:0;margin-top:7px}
-.dates{font-size:13.5px;color:#9FC2E4;border-top:1px solid rgba(255,255,255,.22);padding-top:11px;margin-top:13px}
+/* ── masthead with falling light ── */
+header.top{position:relative;overflow:hidden;background:var(--night);
+  padding:26px 18px 20px;padding-top:calc(26px + env(safe-area-inset-top));
+  border-bottom:1px solid var(--line)}
+#rain{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+header.top .in{position:relative;z-index:2}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.32em;color:var(--gold);margin:0 0 10px}
+header.top h1{font-family:var(--serif);font-weight:500;font-size:42px;line-height:.95;margin:0;
+  letter-spacing:.01em;color:var(--text)}
+header.top h1 em{display:block;font-size:16px;font-style:italic;color:var(--crystal);margin-top:10px;letter-spacing:.02em}
+.dates{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:16px;padding-top:12px;
+  border-top:1px solid var(--line);letter-spacing:.04em}
 
-nav{position:sticky;top:0;z-index:60;background:var(--slip);border-bottom:1px solid var(--line);
-  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+/* ── nav ── */
+nav{position:sticky;top:0;z-index:60;background:rgba(10,8,18,.96);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 nav div{display:flex;padding:0 10px}
-nav button{background:none;border:none;padding:13px 13px;font-size:13.5px;font-weight:650;color:var(--mute);
-  white-space:nowrap;border-bottom:2px solid transparent;cursor:pointer}
-nav button.on{color:var(--cobalt);border-bottom-color:var(--cobalt)}
+nav button{background:none;border:none;padding:14px 13px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.14em;color:var(--dim);white-space:nowrap;border-bottom:1px solid transparent;cursor:pointer}
+nav button.on{color:var(--gold);border-bottom-color:var(--gold)}
 
 main{padding:0 15px 70px;padding-bottom:calc(70px + env(safe-area-inset-bottom))}
-.view{display:none;padding-top:24px}
+.view{display:none;padding-top:26px}
 .view.on{display:block}
-h2{font-family:var(--serif);font-size:26px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em;line-height:1.15}
-h3.sub{font-family:var(--serif);font-size:20px;font-weight:600;margin:26px 0 8px}
-.lede{color:var(--mute);font-size:14.5px;margin:0 0 18px;max-width:60ch}
+h2{font-family:var(--serif);font-size:30px;font-weight:500;margin:0 0 8px;line-height:1.1;letter-spacing:.01em}
+h3.sub{font-family:var(--mono);font-size:11px;letter-spacing:.28em;color:var(--gold);
+  margin:34px 0 12px;text-transform:uppercase}
+.lede{color:var(--dim);font-size:14.5px;margin:0 0 20px;max-width:62ch}
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:2px;margin:0 0 10px}
-.stripe{border-left:7px solid var(--c,var(--iznik));position:relative}
-.stripe::before{content:"";position:absolute;left:-7px;top:0;bottom:0;width:7px;
-  background:repeating-linear-gradient(0deg,rgba(255,255,255,.42) 0 3px,transparent 3px 7px);pointer-events:none}
-.pad{padding:14px 15px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:3px;margin:0 0 11px}
+.pad{padding:15px 16px}
+.edge{border-left:2px solid var(--c,var(--gold))}
 
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 0}
-.tag{font-size:11.5px;font-weight:650;padding:3px 8px;border-radius:2px;background:#EFEAE0;color:#5A5344}
-.tag.sun{background:#DFF0EA;color:#12604F}
-.tag.shut{background:#F6E2E0;color:#8C2F28}
-.tag.star{background:#F5EBD3;color:#7A5C15}
-.tag.cat{background:#E4EDF7;color:#164A80}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0 0}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:4px 8px;border-radius:2px;
+  background:var(--panel2);color:var(--dim);border:1px solid var(--line)}
+.tag.gold{color:var(--gold);border-color:var(--gold-dim)}
+.tag.ok{color:var(--ok);border-color:#2E6B52}
+.tag.bad{color:var(--danger);border-color:#6B2E3D}
+.tag.moon{color:var(--moon);border-color:#3A4470}
 
-.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
-.acts a,.acts button{flex:1 1 0;min-width:76px;text-align:center;padding:10px 4px;font-size:13px;font-weight:650;
-  text-decoration:none;border-radius:2px;border:1px solid var(--line);color:var(--cobalt);background:#FCFAF6;cursor:pointer}
-.acts a.pri{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
-.acts a:focus-visible,.acts button:focus-visible,nav button:focus-visible{outline:2px solid var(--iznik);outline-offset:2px}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.acts a,.acts button{flex:1 1 0;min-width:74px;text-align:center;padding:10px 4px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-decoration:none;border-radius:2px;
+  border:1px solid var(--line);color:var(--moon);background:var(--panel2);cursor:pointer}
+.acts a.pri{background:var(--gold);color:#150F04;border-color:var(--gold);font-weight:700}
+.acts a:focus-visible,.acts button:focus-visible,nav button:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
 
-details.dis{border:1px solid var(--line);border-radius:2px;background:var(--card);margin:0 0 11px;overflow:hidden}
-details.dis>summary{list-style:none;cursor:pointer;padding:15px 15px 15px 19px;border-left:7px solid var(--c,var(--iznik))}
+details.dis{border:1px solid var(--line);border-radius:3px;background:var(--panel);margin:0 0 11px;overflow:hidden}
+details.dis>summary{list-style:none;cursor:pointer;padding:16px;border-left:2px solid var(--c,var(--gold))}
 details.dis>summary::-webkit-details-marker{display:none}
 .dh{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.dh h3{margin:0;font-family:var(--serif);font-size:20px;font-weight:600}
-.dh .when{font-size:12px;font-weight:700;color:var(--c,var(--iznik));white-space:nowrap;padding-top:5px}
-.dsub{font-size:13.5px;color:var(--mute);margin:4px 0 0}
-.cnt{font-size:12px;color:var(--mute);margin-top:8px}
-.dbody{padding:2px 12px 14px}
-.why{font-size:14px;background:#F4EFE6;border-left:3px solid var(--c,var(--iznik));padding:11px 13px;margin:0 0 13px;border-radius:2px}
-.why b{display:block;font-size:11.5px;letter-spacing:.07em;color:var(--mute);margin-bottom:4px}
+.dh h3{margin:0;font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:.01em}
+.dh .when{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--c,var(--gold));white-space:nowrap;padding-top:7px}
+.dsub{font-size:13.5px;color:var(--dim);margin:5px 0 0}
+.cnt{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:9px;letter-spacing:.08em}
+.dbody{padding:2px 12px 15px}
+.why{font-size:14px;background:var(--panel2);border-left:2px solid var(--c,var(--gold));
+  padding:13px 14px;margin:0 0 14px;border-radius:2px;color:#D5CFE4}
+.why b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--gold);margin-bottom:6px}
 
-.shop h4{margin:0 0 2px;font-size:16px;font-weight:650;letter-spacing:-.01em}
-.shop .addr{font-size:13px;color:var(--mute);margin:0 0 8px}
-.shop .txt{font-size:14px;margin:0}
-.visited{background:#F2F8F4}
-.visited h4::after{content:" ✓";color:var(--turq)}
+.shop h4{margin:0 0 3px;font-size:16.5px;font-weight:600;letter-spacing:.01em}
+.shop .addr{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:0 0 9px;line-height:1.5}
+.shop .txt{font-size:14px;margin:0;color:#D5CFE4}
+.visited{background:#12172A;border-color:#2E4470}
+.visited h4::after{content:" ✦";color:var(--gold)}
 
-.track{border-top:1px solid #EEE7DB;margin-top:12px;padding-top:12px}
-.verd{display:flex;gap:6px;margin-bottom:10px}
-.verd button{flex:1;padding:9px 4px;font-size:13px;font-weight:650;border:1px solid var(--line);
-  background:#FCFAF6;color:var(--mute);border-radius:2px;cursor:pointer}
-.verd button.y{background:var(--turq);border-color:var(--turq);color:#fff}
-.verd button.n{background:#B0524B;border-color:#B0524B;color:#fff}
-.verd button.m{background:var(--brass);border-color:var(--brass);color:#fff}
-.lbl{font-size:11.5px;letter-spacing:.06em;color:var(--mute);font-weight:700;margin:0 0 6px}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
-.chips button{font-size:12.5px;padding:6px 10px;border:1px solid var(--line);background:#FCFAF6;
-  color:var(--mute);border-radius:2px;cursor:pointer}
-.chips button.on{background:var(--iznik);border-color:var(--iznik);color:#fff;font-weight:650}
-textarea{width:100%;min-height:64px;padding:10px;border:1px solid var(--line);border-radius:2px;
-  background:#FCFAF6;resize:vertical;font-size:14px;color:var(--ink)}
-.photos{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+.track{border-top:1px solid var(--line);margin-top:13px;padding-top:13px}
+.verd{display:flex;gap:6px;margin-bottom:12px}
+.verd button{flex:1;padding:9px 4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  border:1px solid var(--line);background:var(--panel2);color:var(--dim);border-radius:2px;cursor:pointer}
+.verd button.y{background:#1D4A38;border-color:var(--ok);color:var(--ok)}
+.verd button.m{background:#4A3A1A;border-color:var(--warn);color:var(--warn)}
+.verd button.n{background:#4A2030;border-color:var(--danger);color:var(--danger)}
+.lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--gold);margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.chips button{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;padding:6px 9px;
+  border:1px solid var(--line);background:var(--panel2);color:var(--dim);border-radius:2px;cursor:pointer}
+.chips button.on{background:var(--gold);border-color:var(--gold);color:#150F04;font-weight:700}
+textarea{width:100%;min-height:66px;padding:11px;border:1px solid var(--line);border-radius:2px;
+  background:var(--night);resize:vertical;font-size:14px}
+.photos{display:flex;gap:6px;flex-wrap:wrap;margin:11px 0 0}
 .photos figure{margin:0;position:relative;width:74px;height:74px}
 .photos img{width:74px;height:74px;object-fit:cover;border-radius:2px;border:1px solid var(--line)}
 .photos button{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;
-  border:none;background:#B0524B;color:#fff;font-size:13px;line-height:1;cursor:pointer;padding:0}
-.addph{display:inline-block;margin-top:10px;padding:9px 14px;font-size:13px;font-weight:650;
-  border:1px dashed var(--line);border-radius:2px;color:var(--cobalt);background:#FCFAF6;cursor:pointer}
+  border:none;background:var(--danger);color:#2A0A12;font-size:13px;cursor:pointer;padding:0}
+.addph{display:inline-block;margin-top:11px;padding:9px 14px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.1em;border:1px dashed var(--gold-dim);border-radius:2px;color:var(--gold);
+  background:transparent;cursor:pointer}
 input[type=file]{display:none}
 
-.check label{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;cursor:pointer;
-  border-bottom:1px solid #F0EAE0;font-size:14.5px}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;cursor:pointer;
+  border-bottom:1px solid var(--line);font-size:14.5px}
 .check label:last-child{border-bottom:none}
-.check input{appearance:none;flex:0 0 20px;width:20px;height:20px;margin-top:1px;border:1.5px solid #B9AE9B;
-  border-radius:2px;background:#fff;position:relative;cursor:pointer}
-.check input:checked{background:var(--turq);border-color:var(--turq)}
-.check input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:11px;
-  border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
-.check input:checked + span{text-decoration:line-through;color:#A8A296}
-.prog{font-size:13px;color:var(--mute);margin:0 0 8px}
+.check input{appearance:none;flex:0 0 19px;width:19px;height:19px;margin-top:2px;border:1px solid #4A4166;
+  border-radius:2px;background:var(--night);position:relative;cursor:pointer}
+.check input:checked{background:var(--gold);border-color:var(--gold)}
+.check input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+  border:solid #150F04;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.check input:checked + span{text-decoration:line-through;color:#5F5878}
+.prog{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gold);margin:0 0 10px}
 
 .day{cursor:pointer}
-.day .dtop{display:flex;gap:12px;align-items:baseline;padding:13px 15px 0}
-.day .num{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--cobalt);line-height:1}
-.day .dow{font-size:12px;color:var(--mute);font-weight:650}
-.day .ttl{font-size:16px;font-weight:650;padding:2px 15px 0}
-.day .sm{font-size:13px;color:var(--mute);padding:4px 15px 13px}
-.day.today{border:2px solid var(--cobalt)}
-.sched{border-top:1px solid #EEE7DB;padding:4px 0 0}
-.stop{display:flex;gap:11px;padding:11px 15px;border-bottom:1px solid #F4EFE6}
+.day .dtop{display:flex;gap:13px;align-items:baseline;padding:15px 16px 0}
+.day .num{font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1}
+.day .dow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--dim)}
+.day .ttl{font-size:17px;font-weight:600;padding:3px 16px 0;letter-spacing:.01em}
+.day .sm{font-family:var(--mono);font-size:11px;color:var(--dim);padding:6px 16px 15px;letter-spacing:.03em}
+.day.today{border-color:var(--gold)}
+.sched{border-top:1px solid var(--line)}
+.stop{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid #221C34}
 .stop:last-child{border-bottom:none}
-.stop .t{flex:0 0 52px;font-size:13px;font-weight:700;color:var(--cobalt);padding-top:1px}
-.stop .b{flex:1}
-.stop .n{font-size:14.5px;font-weight:650}
-.stop .d{font-size:13px;color:var(--mute);margin-top:2px}
-.move{background:#F4EFE6;font-size:12.5px;color:#5A5344;padding:8px 15px 8px 78px}
-.budget{background:var(--cobalt);color:#fff;font-size:13px;padding:11px 15px;display:flex;justify-content:space-between}
+.stop .t{flex:0 0 54px;font-family:var(--mono);font-size:11.5px;color:var(--gold);padding-top:2px;letter-spacing:.03em}
+.stop .n{font-size:14.5px;font-weight:600}
+.stop .d{font-size:13.5px;color:#B8B0CC;margin-top:3px}
+.move{background:var(--panel2);font-family:var(--mono);font-size:10.5px;color:var(--moon);
+  padding:9px 16px 9px 82px;letter-spacing:.04em}
+.budget{background:var(--panel2);border-top:1px solid var(--line);font-family:var(--mono);
+  font-size:10.5px;color:var(--gold);padding:12px 16px;letter-spacing:.08em}
 
-.hot .badge{display:inline-block;font-size:10.5px;font-weight:750;letter-spacing:.07em;
-  background:var(--cobalt);color:#fff;padding:3px 8px;border-radius:2px;margin-bottom:8px}
-.hot .badge.warn{background:#B0524B}
-.hot h4{margin:0 0 2px;font-size:17px;font-weight:650}
-.hot .meta{font-size:13px;color:var(--mute);margin:0 0 4px}
-.hot .price{font-family:var(--serif);font-size:22px;color:var(--cobalt);margin:0 0 10px}
-.hot .price small{font-family:var(--sans);font-size:12px;color:var(--mute)}
-.walk{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 10px}
-.walk div{font-size:12px;background:#EFEAE0;padding:5px 8px;border-radius:2px}
-.walk div b{color:var(--turq)}
-.walk div.far b{color:#B0524B}
-.hot p{font-size:14px;margin:0}
-.hot.pick{border:2px solid var(--cobalt)}
+.hero{background:linear-gradient(160deg,#1B1628,#0E0B18);border:1px solid var(--gold-dim);
+  border-radius:3px;padding:20px 18px;margin-bottom:14px}
+.hero .badge{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--gold);margin-bottom:10px}
+.hero h4{font-family:var(--serif);font-size:25px;font-weight:500;margin:0 0 4px}
+.hero .meta{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:0 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+.grid div{background:var(--night);border:1px solid var(--line);padding:11px;border-radius:2px}
+.grid .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--dim)}
+.grid .v{font-family:var(--serif);font-size:19px;color:var(--gold);margin-top:3px}
 
-.phr div{padding:12px 14px;border-bottom:1px solid #F0EAE0}
+.note{background:var(--panel2);border-left:2px solid var(--warn);padding:13px 15px;
+  border-radius:2px;margin:14px 0;font-size:14px;color:#D5CFE4}
+.note b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--warn);margin-bottom:6px}
+.note.crys{border-left-color:var(--crystal)}
+.note.crys b{color:var(--crystal)}
+
+.phr div{padding:13px 15px;border-bottom:1px solid var(--line)}
 .phr div:last-child{border-bottom:none}
-.phr .tr{font-family:var(--serif);font-size:17.5px;color:var(--cobalt)}
-.phr .en{font-size:13px;color:var(--mute)}
+.phr .tr{font-family:var(--serif);font-size:19px;color:var(--gold)}
+.phr .en{font-size:13px;color:var(--dim);margin-top:2px}
 
-.callout{background:var(--cobalt);color:#fff;padding:17px 18px;border-radius:2px;margin:18px 0}
-.callout h4{margin:0 0 6px;font-family:var(--serif);font-size:18px;font-weight:600}
-.callout p{margin:0;font-size:14px;color:#D6E5F4}
-.callout.warn{background:#8C2F28}
-.callout.warn p{color:#F5DCD9}
-
-.bigbtn{display:block;width:100%;padding:15px;background:var(--cobalt);color:#fff;border:none;
-  border-radius:2px;font-size:15px;font-weight:650;cursor:pointer;margin:6px 0}
-.ghost{background:none;color:var(--cobalt);border:1px solid var(--line)}
-.stats{display:flex;gap:8px;margin:0 0 16px}
-.stats div{flex:1;background:var(--card);border:1px solid var(--line);padding:13px 10px;border-radius:2px;text-align:center}
-.stats b{display:block;font-family:var(--serif);font-size:27px;color:var(--cobalt);line-height:1.1}
-.stats span{font-size:11.5px;color:var(--mute)}
-#report{margin-top:18px}
-#report h4{font-family:var(--serif);font-size:19px;margin:20px 0 8px}
-.rep{background:var(--card);border:1px solid var(--line);padding:13px 15px;margin-bottom:8px;border-radius:2px}
-.rep .rn{font-weight:650;font-size:15px}
-.rep .rm{font-size:12.5px;color:var(--mute);margin:2px 0 6px}
-.rep .rv{font-size:13px;font-weight:650}
-.rep .ri{font-size:13.5px;margin-top:5px}
-.rep .rp{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.bigbtn{display:block;width:100%;padding:15px;background:var(--gold);color:#150F04;border:none;
+  border-radius:2px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;cursor:pointer;margin:8px 0}
+.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold-dim)}
+.stats{display:flex;gap:8px;margin:0 0 18px}
+.stats div{flex:1;background:var(--panel);border:1px solid var(--line);padding:14px 10px;border-radius:3px;text-align:center}
+.stats b{display:block;font-family:var(--serif);font-size:30px;color:var(--gold);line-height:1.1}
+.stats span{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--dim)}
+.rep{background:var(--panel);border:1px solid var(--line);padding:14px 15px;margin-bottom:9px;border-radius:3px}
+.rep .rn{font-weight:600;font-size:15.5px}
+.rep .rm{font-family:var(--mono);font-size:11px;color:var(--dim);margin:3px 0 7px}
+.rep .ri{font-size:13.5px;margin-top:5px;color:#D5CFE4}
+.rep .rp{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
 .rep .rp img{width:60px;height:60px;object-fit:cover;border-radius:2px}
-footer{border-top:1px solid var(--line);margin-top:38px;padding:20px 0 8px;font-size:12.5px;color:var(--mute)}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+footer{border-top:1px solid var(--line);margin-top:42px;padding:22px 0 10px;
+  font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.05em}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}#rain{display:none}}
 @media print{nav,header.top,.acts,.bigbtn,footer{display:none!important}.view{display:block!important}}
 </style>
 </head>
 <body>
 
 <header class="top">
-  <p class="kick">Wear Aqui</p>
-  <h1>İstanbul<span>Fabric and textile sourcing</span></h1>
-  <div class="dates">Land 00:50 Fri 4 Sep · Home 18:35 Sun 13 Sep · 5 districts · 22 suppliers</div>
+  <canvas id="rain"></canvas>
+  <div class="in">
+    <p class="kick">A Q U I &nbsp;·&nbsp; S O U R C I N G</p>
+    <h1>İstanbul<em>Celestial Dusk — where the next collection begins</em></h1>
+    <div class="dates">3–13 SEP 2026 · HILTON BOMONTI · 22 SUPPLIERS · 5 DISTRICTS</div>
+  </div>
 </header>
 
 <nav><div id="tabs"></div></nav>
@@ -196,753 +203,705 @@ footer{border-top:1px solid var(--line);margin-top:38px;padding:20px 0 8px;font-
   <section class="view on" id="v-days"></section>
   <section class="view" id="v-shops"></section>
   <section class="view" id="v-fair"></section>
+  <section class="view" id="v-eat"></section>
+  <section class="view" id="v-do"></section>
   <section class="view" id="v-stay"></section>
-  <section class="view" id="v-near"></section>
   <section class="view" id="v-prep"></section>
   <section class="view" id="v-report"></section>
 </main>
 
 <script>
-/* ══════════════ DATA ══════════════ */
+/* ═══════════ FABRIC DATA ═══════════ */
+const CATS=["Crepe","Satin","Chiffon","Silk","Lace","Jersey/penye","Linen","Cotton","Viscose",
+"Velvet","Tulle","Embroidered","Printed","Denim","Wool/suiting","Fleece/knit","Deadstock","Trims"];
 
-const CATS = ["Crepe","Satin","Chiffon","Silk","Lace","Jersey/penye","Linen","Cotton","Viscose",
-              "Velvet","Tulle","Embroidered","Printed","Denim","Wool/suiting","Fleece/knit","Deadstock","Trims"];
-
-const DISTRICTS = {
- zey:{name:"Zeytinburnu", c:"var(--turq)", when:"Mon 7 Sep",
+const DISTRICTS={
+ zey:{name:"Zeytinburnu",c:"var(--ok)",when:"MON 7",
   sub:"Telsiz & Seyitnizam — mills, converters, deadstock",
-  why:"The genuine fabric heartland of Istanbul and the best prices of the whole trip. A working district: no English, no shopfronts, lorries double-parked. Everything here is sold by the roll, straight from the people who wove it. Cash in lira moves the price.",
+  why:"The genuine fabric heartland of İstanbul and the best prices of the whole trip. A working district: no English, no shopfronts, lorries double-parked. Everything sold by the roll, straight from the people who wove it. Cash in lira moves the price. From Bomonti this is a 25–35 minute drive — the car and driver day.",
   shops:[
-   {id:"zey1",n:"Aygün Kumaşçılık",a:"G/26 Sk 10, Seyitnizam",t:"+905316784792",g:"41.0064801,28.906285",
-    w:"kumasalanlar.com", ig:"Aygün Kumaşçılık",
-    x:"Stock and lot fabric — flawless rating across 177 reviews, and buyers specifically praise straight pricing. Start the day here.",
-    cats:["Deadstock","Crepe","Viscose","Cotton"], tags:["Mon–Fri 8–19:30","Sat 8–18","Best in district"]},
-   {id:"zey2",n:"Avcı Tekstil",a:"Çırpıcı Yolu Sk 35-37A",t:"+905356519107",g:"41.0078598,28.9065296",
-    w:"kumasalan.com", ig:"Avcı Tekstil kumaş",
-    x:"Export house leftovers well below market — full rolls from cancelled orders. 354 reviews, the busiest fabric shop in the district.",
-    cats:["Deadstock","Cotton","Viscose","Printed"], tags:["Mon 9–17","Tue–Fri 9–19","Sat 9–15"]},
-   {id:"zey3",n:"Textile Altunkaya",a:"Dursun Kılıç Cd 61, Telsiz",t:"+905363046729",g:"41.0029095,28.908974",
-    w:"altunkayatekstil.com", ig:"Altunkaya Tekstil",
+   {id:"zey1",n:"Aygün Kumaşçılık",a:"G/26 Sk 10, Seyitnizam",t:"+905316784792",g:"41.0064801,28.906285",w:"kumasalanlar.com",ig:"Aygün Kumaşçılık",
+    x:"Stock and lot fabric — a flawless rating across 177 reviews, and buyers single out straight pricing. Start the day here while you're sharp.",
+    cats:["Deadstock","Crepe","Viscose","Cotton"],tags:["Mon–Fri 8–19:30","Sat 8–18","Best in district"]},
+   {id:"zey2",n:"Avcı Tekstil",a:"Çırpıcı Yolu Sk 35-37A",t:"+905356519107",g:"41.0078598,28.9065296",w:"kumasalan.com",ig:"Avcı Tekstil kumaş",
+    x:"Export house leftovers well below market — full rolls from cancelled orders. Busiest fabric shop in the district.",
+    cats:["Deadstock","Cotton","Viscose","Printed"],tags:["Mon 9–17","Tue–Fri 9–19","Sat 9–15"]},
+   {id:"zey3",n:"Textile Altunkaya",a:"Dursun Kılıç Cd 61, Telsiz",t:"+905363046729",g:"41.0029095,28.908974",w:"altunkayatekstil.com",ig:"Altunkaya Tekstil",
     x:"Fleece, lacoste and three-thread knits. Buyers have come here thirty years for the fleece specifically.",
-    cats:["Fleece/knit","Jersey/penye","Cotton"], tags:["Mon–Fri 8–19","Sat 8–17"]},
-   {id:"zey4",n:"Taşgıran Kumaşçılık",a:"Orkide Sk 37, Telsiz",t:"+905445408755",g:"41.0037876,28.9103652",
-    w:"toptanmayobikini.com", ig:"Taşgıran Kumaşçılık",
-    x:"Direct from the manufacturer, summer and winter ranges. Unusually for this district, open Saturdays.",
-    cats:["Jersey/penye","Printed","Cotton"], tags:["Mon–Sat 8–19"]},
-   {id:"zey5",n:"Textile Erkan",a:"Esadağa Sk 7B/C, Seyitnizam",t:"+905435466850",g:"41.0062498,28.9129445",
-    w:"", ig:"Textile Erkan kumaş",
-    x:"Printed fabrics with new designs weekly. They also print to your own artwork, which is worth asking about.",
-    cats:["Printed","Viscose","Jersey/penye"], tags:["Mon–Fri 8–18:30","Sat 8–15"]},
-   {id:"zey6",n:"Özer Kumaşçılık",a:"Asım Kazancıgil Cd 59, Telsiz",t:"+902126642223",g:"41.0031465,28.9134514",
-    w:"", ig:"Özer Kumaşçılık penye",
+    cats:["Fleece/knit","Jersey/penye","Cotton"],tags:["Mon–Fri 8–19","Sat 8–17"]},
+   {id:"zey4",n:"Taşgıran Kumaşçılık",a:"Orkide Sk 37, Telsiz",t:"+905445408755",g:"41.0037876,28.9103652",w:"toptanmayobikini.com",ig:"Taşgıran Kumaşçılık",
+    x:"Direct from the manufacturer, summer and winter ranges. Unusually for the district, open Saturdays.",
+    cats:["Jersey/penye","Printed","Cotton"],tags:["Mon–Sat 8–19"]},
+   {id:"zey5",n:"Textile Erkan",a:"Esadağa Sk 7B/C, Seyitnizam",t:"+905435466850",g:"41.0062498,28.9129445",w:"",ig:"Textile Erkan kumaş",
+    x:"Printed fabrics, new designs weekly. They print to your own artwork too — worth asking about for a signature AQUI print.",
+    cats:["Printed","Viscose","Jersey/penye"],tags:["Mon–Fri 8–18:30","Sat 8–15"]},
+   {id:"zey6",n:"Özer Kumaşçılık",a:"Asım Kazancıgil Cd 59, Telsiz",t:"+902126642223",g:"41.0031465,28.9134514",w:"",ig:"Özer Kumaşçılık penye",
     x:"Penye and jersey wholesale, stock constantly replenished, custom orders taken.",
-    cats:["Jersey/penye","Cotton"], tags:["Mon–Fri 8–19","Sat 8–14"]},
-   {id:"zey7",n:"Karınca Kumaşçılık",a:"G/11 Sk 37/A, Telsiz",t:"+902126649393",g:"41.0019443,28.9102428",
-    w:"", ig:"Karınca Kumaşçılık",
+    cats:["Jersey/penye","Cotton"],tags:["Mon–Fri 8–19","Sat 8–14"]},
+   {id:"zey7",n:"Karınca Kumaşçılık",a:"G/11 Sk 37/A, Telsiz",t:"+902126649393",g:"41.0019443,28.9102428",w:"",ig:"Karınca Kumaşçılık",
     x:"Smaller operation, warmly reviewed. Worth a look if the bigger names don't have it.",
-    cats:["Cotton","Jersey/penye"], tags:["Mon–Sat 8:30–19:30"]}
-  ]},
+    cats:["Cotton","Jersey/penye"],tags:["Mon–Sat 8:30–19:30"]}]},
 
- osm:{name:"Osmanbey", c:"var(--iznik)", when:"Fri 4 · Tue 8 · Sat 12",
+ osm:{name:"Osmanbey",c:"var(--gold)",when:"FRI 4 · TUE 8 · SAT 12",
   sub:"Şafak Sk & Matbaacı Osmanbey Sk — the fashion end",
-  why:"Be precise about the geography: Osmanbey overall is mostly garment wholesale, and the fabric sits on two short streets off Halaskargazi. This is where the occasion fabrics are. Smaller minimums than a mill, better service, higher prices — and all of it a two-minute walk from the hotel.",
+  why:"This is where the occasion fabrics live — satin, silk, crepe, chiffon, lace. Exactly the register of Celestial Dusk. Be precise about the geography: Osmanbey overall is mostly garment wholesale, and the fabric sits on two short streets off Halaskargazi. From Bomonti it's an 18-minute walk or a 5-minute taxi.",
   shops:[
-   {id:"osm1",n:"Kaptan",a:"Şafak Sk 1",t:"+902122961758",g:"41.05172,28.990392",
-    w:"kaptantextile.com", ig:"Kaptan Textile",
-    x:"Excellent range and genuinely knowledgeable. One caution from reviews: a visitor was quoted well above market and bought down the street. Ask the price per metre before showing any interest.",
-    cats:["Satin","Crepe","Silk","Wool/suiting"], tags:["Mon–Fri 9–19","Sat 9–13:30","Check price first"]},
-   {id:"osm2",n:"Günerteks",a:"Ümit İş Hanı, Matbaacı Osmanbey Sk 71 — 2nd floor",t:"+902125134363",g:"41.0528063,28.9883058",
-    w:"gunerteks.com", ig:"Günerteks",
-    x:"Best acetate satin in Osmanbey, with a colour range buyers call unmatched. Also strong on chiffon. It's upstairs — not visible from the street.",
-    cats:["Satin","Chiffon","Silk"], tags:["Mon–Fri 9:30–18","Closed Sat","Satin specialist"]},
-   {id:"osm3",n:"Lavin Tekstil",a:"Süleyman Nazif Sk 65",t:"+902122969877",g:"41.0529651,28.9888902",
-    w:"lavintekstil.com", ig:"Lavin Tekstil",
+   {id:"osm1",n:"Kaptan",a:"Şafak Sk 1",t:"+902122961758",g:"41.05172,28.990392",w:"kaptantextile.com",ig:"Kaptan Textile",
+    x:"Excellent range and genuinely knowledgeable. One caution: a visitor was quoted well above market and bought down the street instead. Ask the price per metre before showing any interest.",
+    cats:["Satin","Crepe","Silk","Wool/suiting"],tags:["Mon–Fri 9–19","Sat 9–13:30","Check price first"]},
+   {id:"osm2",n:"Günerteks",a:"Ümit İş Hanı, Matbaacı Osmanbey Sk 71 — 2nd floor",t:"+902125134363",g:"41.0528063,28.9883058",w:"gunerteks.com",ig:"Günerteks",
+    x:"Best acetate satin in the district, with a colour range buyers call unmatched. Also strong on chiffon. It's upstairs — not visible from the street.",
+    cats:["Satin","Chiffon","Silk"],tags:["Mon–Fri 9:30–18","Closed Sat","Satin specialist"]},
+   {id:"osm3",n:"Lavin Tekstil",a:"Süleyman Nazif Sk 65",t:"+902122969877",g:"41.0529651,28.9888902",w:"lavintekstil.com",ig:"Lavin Tekstil",
     x:"Silks with hand embroidery and remarkably deep stock — reviewers say they've never been told a colour is out. Against that, several complaints about returns and defects. Inspect the full roll before paying.",
-    cats:["Silk","Embroidered","Satin","Lace"], tags:["Mon–Fri 8–19","Sat 8–15","Inspect the roll"]},
-   {id:"osm4",n:"ASNOVA",a:"Rumeli Cd",t:"+905462302231",g:"41.0515554,28.9902742",
-    w:"asnova.com.tr", ig:"ASNOVA Kumaş",
+    cats:["Silk","Embroidered","Satin","Lace"],tags:["Mon–Fri 8–19","Sat 8–15","Inspect the roll"]},
+   {id:"osm4",n:"ASNOVA",a:"Rumeli Cd",t:"+905462302231",g:"41.0515554,28.9902742",w:"asnova.com.tr",ig:"ASNOVA Kumaş",
     x:"Premium crepe and chiffon, wholesale. Email ahead — pre-arranged visits get the owner rather than whoever is free.",
-    cats:["Crepe","Chiffon","Viscose"], tags:["Mon–Fri 8:30–18:30","Closed Sat"]},
-   {id:"osm5",n:"Bağzibağli Nişantaşı",a:"Matbaacı Osmanbey Sk",t:"+902122257111",g:"41.0533252,28.9879988",
-    w:"", ig:"Bağzibağli Nişantaşı",
-    x:"Eveningwear and suiting fabric with tailoring on site. The most useful stop if the range is occasion-led. Open Saturdays until 19:00.",
-    cats:["Wool/suiting","Satin","Lace","Embroidered"], tags:["Mon–Sat 9:30–19:30"]},
-   {id:"osm6",n:"Beril Kumaş",a:"Şafak Sk 33/A",t:"+905369793210",g:"41.0522969,28.9896387",
-    w:"", ig:"Beril Kumaş",
+    cats:["Crepe","Chiffon","Viscose"],tags:["Mon–Fri 8:30–18:30","Closed Sat"]},
+   {id:"osm5",n:"Bağzibağli Nişantaşı",a:"Matbaacı Osmanbey Sk",t:"+902122257111",g:"41.0533252,28.9879988",w:"",ig:"Bağzibağli Nişantaşı",
+    x:"Eveningwear and suiting fabric with tailoring on site. The most useful stop for anything gown-weight.",
+    cats:["Wool/suiting","Satin","Lace","Embroidered"],tags:["Mon–Sat 9:30–19:30"]},
+   {id:"osm6",n:"Beril Kumaş",a:"Şafak Sk 33/A",t:"+905369793210",g:"41.0522969,28.9896387",w:"",ig:"Beril Kumaş",
     x:"Small and well liked. Reviewers say the best prices on the street, which on this street is worth knowing.",
-    cats:["Crepe","Satin","Chiffon"], tags:["Mon–Fri 9–19","Sat 9–15","Best value here"]},
-   {id:"osm7",n:"Burç Kumaş",a:"Şafak Sk 42/A",t:"+902123438181",g:"41.0526279,28.98928",
-    w:"", ig:"Burç Kumaş",
+    cats:["Crepe","Satin","Chiffon"],tags:["Mon–Fri 9–19","Sat 9–15","Best value here"]},
+   {id:"osm7",n:"Burç Kumaş",a:"Şafak Sk 42/A",t:"+902123438181",g:"41.0526279,28.98928",w:"",ig:"Burç Kumaş",
     x:"Constantly refreshed stock and reliable dispatch — Monday orders reaching customers by Wednesday.",
-    cats:["Crepe","Viscose","Printed"], tags:["Mon–Fri 9:30–18:30","Sat 10–14"]},
-   {id:"osm8",n:"Arte Kumaş",a:"Şafak Sk 75",t:"+905332392495",g:"41.052543,28.9884137",
-    w:"", ig:"Arte Kumaş",
-    x:"Longest hours on the street, which matters when you're fitting one more visit in before dinner.",
-    cats:["Crepe","Satin","Tulle"], tags:["Mon–Fri 8:30–19","Sat 9–13"]},
-   {id:"osm9",n:"Off Örme Kumaş",a:"Efe Sk 11/A, Cumhuriyet",t:"+905327942661",g:"41.0550142,28.985464",
-    w:"", ig:"Off Örme Kumaş",
-    x:"Knits. Repeatedly described as prioritising the customer over the sale, with prices below the street average.",
-    cats:["Jersey/penye","Fleece/knit","Viscose"], tags:["Mon–Fri 8:30–18:30","Sat 8:30–13"]},
-   {id:"osm10",n:"Bursa Pazarı Osmanbey",a:"Selamet Pasajı, Halaskargazi Cd 93/D",t:"+902122415942",g:"41.0527676,28.987164",
-    w:"", ig:"Bursa Pazarı Osmanbey",
+    cats:["Crepe","Viscose","Printed"],tags:["Mon–Fri 9:30–18:30","Sat 10–14"]},
+   {id:"osm8",n:"Arte Kumaş",a:"Şafak Sk 75",t:"+905332392495",g:"41.052543,28.9884137",w:"",ig:"Arte Kumaş",
+    x:"Longest hours on the street — useful when you're fitting one more visit in before dinner. Good on tulle.",
+    cats:["Crepe","Satin","Tulle"],tags:["Mon–Fri 8:30–19","Sat 9–13"]},
+   {id:"osm9",n:"Off Örme Kumaş",a:"Efe Sk 11/A, Cumhuriyet",t:"+905327942661",g:"41.0550142,28.985464",w:"",ig:"Off Örme Kumaş",
+    x:"Knits. Repeatedly described as prioritising the customer over the sale, with prices below the street average. Closest of the Osmanbey shops to Bomonti.",
+    cats:["Jersey/penye","Fleece/knit","Viscose"],tags:["Mon–Fri 8:30–18:30","Sat 8:30–13"]},
+   {id:"osm10",n:"Bursa Pazarı Osmanbey",a:"Selamet Pasajı, Halaskargazi Cd 93/D",t:"+902122415942",g:"41.0527676,28.987164",w:"",ig:"Bursa Pazarı Osmanbey",
     x:"An arcade rather than one shop — several fabric sellers, trim stalls and a shirt tailor under one roof. Good first stop to see range fast.",
-    cats:["Crepe","Cotton","Trims","Satin"], tags:["Arcade","Several sellers"]}
-  ]},
+    cats:["Crepe","Cotton","Trims","Satin"],tags:["Arcade","Several sellers"]}]},
 
- sul:{name:"Sultanhamam", c:"var(--bole)", when:"Sat 5 Sep",
+ sul:{name:"Sultanhamam",c:"var(--crystal)",when:"SAT 5",
   sub:"Eminönü — the old bazaar, and every trim in the city",
-  why:"Open on Saturdays when Osmanbey is half shut, which is exactly why it sits on the 5th. Retail to small wholesale, no appointment needed. Tahtakale next door is where every button, zip and metre of lace in Istanbul comes from. Go early — it's unwalkable by mid-morning.",
+  why:"Open Saturdays when Osmanbey is half shut, which is exactly why it sits on the 5th. Retail to small wholesale, no appointment needed. Tahtakale next door is where every button, zip and metre of lace in İstanbul comes from. Go early — it's unwalkable by mid-morning.",
   shops:[
-   {id:"sul1",n:"Bursa Pazarı Sultanhamam",a:"Dağoğlu Han, Saka Mehmet Sk 22, Rüstem Paşa",t:"+902125276037",g:"41.0147053,28.970923",
-    w:"sultanhamambursapazari.com", ig:"Sultanhamam Bursa Pazarı",
+   {id:"sul1",n:"Bursa Pazarı Sultanhamam",a:"Dağoğlu Han, Saka Mehmet Sk 22, Rüstem Paşa",t:"+902125276037",g:"41.0147053,28.970923",w:"sultanhamambursapazari.com",ig:"Sultanhamam Bursa Pazarı",
     x:"The old fabric bazaar. Use it to price-check anything Osmanbey quoted — if Osmanbey is within about fifteen percent, buy from Osmanbey for the service.",
-    cats:["Cotton","Silk","Printed","Satin","Linen"], tags:["Mon–Sat 9–18","Open Saturdays"]},
-   {id:"sul2",n:"Tahtakale & Çakmakçılar Yokuşu",a:"Tahtakale, Fatih",t:"",g:"41.015133,28.9680649",
-    w:"", ig:"Tahtakale tuhafiye",
-    x:"Buttons, zips, lace, bias binding, hooks, thread, interfacing. Cheapest in the country and no minimums worth worrying about. Forgetting trims is the classic sourcing mistake.",
-    cats:["Trims","Lace"], tags:["All trims","Go early"]}
-  ]},
+    cats:["Cotton","Silk","Printed","Satin","Linen"],tags:["Mon–Sat 9–18","Open Saturdays"]},
+   {id:"sul2",n:"Tahtakale & Çakmakçılar Yokuşu",a:"Tahtakale, Fatih",t:"",g:"41.015133,28.9680649",w:"",ig:"Tahtakale tuhafiye",
+    x:"Buttons, zips, lace, bias binding, hooks, thread, interfacing, beading. Cheapest in the country and no minimums worth worrying about. Forgetting trims is the classic sourcing mistake — and for beaded, crystal-detailed pieces this is the most important stop of the trip.",
+    cats:["Trims","Lace"],tags:["All trims","Go early","Crystal & beading"]}]},
 
- kad:{name:"Kadıköy", c:"var(--brass)", when:"Sun 6 Sep",
-  sub:"Vahapbey Sokak — the only Sunday option in Istanbul",
+ kad:{name:"Kadıköy",c:"var(--moon)",when:"SUN 6",
+  sub:"Vahapbey Sokak — the only Sunday option in İstanbul",
   why:"By the metre rather than by the roll, and by far the most foreigner-friendly fabric shopping in the city. It earns its place for one reason: every wholesale district is shut on Sunday, and Burçak opens at one o'clock. Take the ferry — it's part of the day, not just transport.",
   shops:[
-   {id:"kad1",n:"Burçak Kumaş",a:"Vahapbey Sk 3",t:"+905358134333",g:"40.9912316,29.0268292",
-    w:"burcakkumas.com", ig:"Burçak Kumaş",
-    x:"Linen specialist, the owner's son speaks excellent English, highest-rated fabric shop in Kadıköy. Sells in bulk as well as by the metre. Open Sunday afternoons.",
-    cats:["Linen","Cotton","Viscose","Printed"], tags:["Sun 13–18","Mon–Sat 9–20","English spoken"]},
-   {id:"kad2",n:"Mu-Ne-Gü Kumaş",a:"Vahapbey Sk 9",t:"+905356648187",g:"40.9913322,29.0269014",
-    w:"", ig:"Mu-Ne-Gü Kumaş",
+   {id:"kad1",n:"Burçak Kumaş",a:"Vahapbey Sk 3",t:"+905358134333",g:"40.9912316,29.0268292",w:"burcakkumas.com",ig:"Burçak Kumaş",
+    x:"Linen specialist, the owner's son speaks excellent English, highest-rated fabric shop in Kadıköy. Sells in bulk as well as by the metre. Opens Sunday afternoons.",
+    cats:["Linen","Cotton","Viscose","Printed"],tags:["Sun 13–18","Mon–Sat 9–20","English spoken"]},
+   {id:"kad2",n:"Mu-Ne-Gü Kumaş",a:"Vahapbey Sk 9",t:"+905356648187",g:"40.9913322,29.0269014",w:"",ig:"Mu-Ne-Gü Kumaş",
     x:"Fair prices with no foreigner mark-up, English spoken, flawless rating. Stock runs thin — ask about other colours.",
-    cats:["Cotton","Viscose","Linen"], tags:["Mon–Sat 9:30–19","English spoken"]},
-   {id:"kad3",n:"Annem Kumaş",a:"Bestekar Dilhayat Sk 3",t:"+902163476278",g:"40.9903554,29.0284005",
-    w:"", ig:"Annem Kumaş Kadıköy",
+    cats:["Cotton","Viscose","Linen"],tags:["Mon–Sat 9:30–19","English spoken"]},
+   {id:"kad3",n:"Annem Kumaş",a:"Bestekar Dilhayat Sk 3",t:"+902163476278",g:"40.9903554,29.0284005",w:"",ig:"Annem Kumaş Kadıköy",
     x:"Small, cheaper than its neighbours, knowledgeable owner. Two minutes further down the street.",
-    cats:["Cotton","Printed","Viscose"], tags:["Mon–Sat 9:30–19"]}
-  ]},
+    cats:["Cotton","Printed","Viscose"],tags:["Mon–Sat 9:30–19"]}]},
 
- bay:{name:"Bayrampaşa", c:"var(--mute)", when:"Reserve only",
+ bay:{name:"Bayrampaşa",c:"var(--dim)",when:"RESERVE",
   sub:"Velvet, heavy weights, Medine silk",
-  why:"A reserve district, not a scheduled one. Worth the trip only if velvet, upholstery weights or modest-wear fabrics are in the range. If the fair and Osmanbey have delivered, skip it — the time is better spent on follow-ups.",
+  why:"A reserve district, not a scheduled one. Worth the trip only if velvet or heavy weights are in the range. If the fair and Osmanbey have delivered, skip it — the time is better spent on follow-ups.",
   shops:[
-   {id:"bay1",n:"Yıldız Kumaş",a:"100. Yıl Cd 29/B",t:"+902125115911",g:"41.0703283,28.8888929",
-    w:"yildiztextile.com.tr", ig:"Yıldız Kumaş toptan",
+   {id:"bay1",n:"Yıldız Kumaş",a:"100. Yıl Cd 29/B",t:"+902125115911",g:"41.0703283,28.8888929",w:"yildiztextile.com.tr",ig:"Yıldız Kumaş toptan",
     x:"Wholesale only. Crepe and Medine silk, from an old Sultanhamam trading family.",
-    cats:["Crepe","Silk"], tags:["Mon–Fri 9–18:30","Sat 9–15","Wholesale only"]},
-   {id:"bay2",n:"Mirce Kumaş",a:"Büyük Çınar Sk 44, Orta",t:"+905012588080",g:"41.03488,28.916071",
-    w:"", ig:"Mirce Kumaş",
+    cats:["Crepe","Silk"],tags:["Mon–Fri 9–18:30","Sat 9–15","Wholesale only"]},
+   {id:"bay2",n:"Mirce Kumaş",a:"Büyük Çınar Sk 44, Orta",t:"+905012588080",g:"41.03488,28.916071",w:"",ig:"Mirce Kumaş",
     x:"Velvet and upholstery weights, strongly reviewed for quality and for how they treat buyers.",
-    cats:["Velvet","Wool/suiting"], tags:["Mon–Fri 9–18:30","Sat 9–13"]}
-  ]}
+    cats:["Velvet","Wool/suiting"],tags:["Mon–Fri 9–18:30","Sat 9–13"]}]}
 };
 
+/* ═══════════ DAYS ═══════════ */
 const DAYS=[
- {d:4,dow:"Friday",t:"Land, sleep, walk the street",
-  sm:"Osmanbey recon · half day · all on foot",
-  budget:"About 4 hours on foot · nothing bought",
+ {d:3,dow:"Thursday",t:"Fly",sm:"DXB → IST · room booked from tonight",
+  budget:"THE ROOM IS BOOKED FROM TONIGHT — YOU ARRIVE AT 02:00",
   stops:[
-   {t:"00:50",n:"Land at IST",d:"Pre-booked transfer. App taxis can't collect at the Arrivals kerb, so don't improvise this one at 2am."},
-   {m:"Transfer to hotel · 60–75 min"},
-   {t:"02:00",n:"Hotel",d:"Sleep. Nothing before eleven."},
-   {t:"11:30",n:"Şafak Sokak, end to end",d:"90 min. Kaptan, Beril, Burç, Arte. Collect cards, note what each holds, buy nothing."},
+   {t:"—",n:"Final pack",d:"Swatch tote, tape measure, 40 business cards, scissors in the CHECKED bag, both e-badges saved offline."},
+   {t:"eve",n:"DXB → IST",d:"Checked bags already added. You'll want them on the way home."},
+   {t:"00:50",n:"Land at İstanbul Airport",d:"Pre-booked transfer with meet-and-greet. App taxis cannot collect at the Arrivals kerb — they send you up to Departures, which is miserable at 2am with luggage."}]},
+ {d:4,dow:"Friday",t:"Arrive, sleep, walk the street",
+  sm:"Osmanbey recon · half day · no buying",
+  budget:"~4 HRS ON FOOT · COLLECT CARDS, BUY NOTHING",
+  stops:[
+   {t:"02:00",n:"Hilton Bomonti",d:"Sleep properly. Nothing before eleven."},
+   {t:"11:30",n:"Breakfast, then out",d:"Hotel breakfast, or walk 5 min to Bomontiada."},
+   {m:"Taxi · 5 min · ~120 TRY · or walk 18 min"},
+   {t:"12:30",n:"Şafak Sokak, end to end",d:"90 min. Kaptan, Beril, Burç, Arte. Collect cards, note which shop holds what, buy nothing."},
    {m:"Walk · 3 min"},
-   {t:"13:00",n:"Lunch in Nişantaşı",d:"Friday prayers slow everything 12:30–14:00. Eat through it."},
-   {m:"Walk · 5 min"},
-   {t:"14:30",n:"Matbaacı Osmanbey Sokak",d:"90 min. Günerteks (2nd floor), Lavin, Bağzibağli, Ebrar. Same rule — cards only."},
+   {t:"14:15",n:"Matbaacı Osmanbey Sokak",d:"90 min. Günerteks (2nd floor, easy to miss), Lavin, Bağzibağli. Same rule — cards only."},
    {m:"Walk · 6 min"},
-   {t:"16:30",n:"Bursa Pazarı arcade",d:"45 min. Fastest way to see the range of the whole street in one building."},
-   {t:"18:00",n:"Back at the hotel",d:"Write the shop map while it's fresh. WhatsApp ASNOVA, Günerteks and Bağzibağli for Tuesday appointments."}
-  ]},
- {d:5,dow:"Saturday",t:"Sultanhamam and all the trims",
-  sm:"Eminönü · full day · taxi there, metro back",
-  budget:"Leave 08:15 · back by 18:00",
+   {t:"16:00",n:"Bursa Pazarı arcade",d:"45 min. Fastest way to see the whole street's range in one building."},
+   {t:"19:30",n:"Dinner — Zoya's House, Harbiye",d:"Easy first night, open to midnight. Write the shop map before bed and WhatsApp ASNOVA, Günerteks and Bağzibağli for Tuesday."}]},
+ {d:5,dow:"Saturday",t:"Trims, tiles and the old city",
+  sm:"Eminönü · full day · the sightseeing day too",
+  budget:"OUT 08:15 · TRIMS BY 13:30 · THEN SULTANAHMET",
   stops:[
    {t:"08:15",n:"Leave the hotel",d:"Early. Sultanhamam is unwalkable by mid-morning."},
-   {m:"Taxi · 20–30 min · or M2 to Vezneciler then walk"},
-   {t:"09:00",n:"Bursa Pazarı, Dağoğlu Han",d:"2 hours. Price-check everything Osmanbey quoted yesterday. Cotton, silk, printed, linen."},
+   {m:"Taxi · 25–35 min · or M2 from Osmanbey to Vezneciler"},
+   {t:"09:00",n:"Bursa Pazarı, Dağoğlu Han",d:"2 hrs. Price-check everything Osmanbey quoted yesterday."},
    {m:"Walk · 5 min"},
-   {t:"11:15",n:"Tahtakale — TRIMS",d:"2 hours, and don't rush it. Buttons, zips, lace, binding, hooks, interfacing. Cheapest in the country. This is the single most forgettable and most regretted stop of the trip."},
+   {t:"11:15",n:"Tahtakale — TRIMS",d:"2 hrs, and don't rush it. Buttons, zips, lace, binding, beading and crystal detailing. The single most forgettable and most regretted stop of the trip."},
    {m:"Walk · 4 min uphill"},
-   {t:"13:30",n:"Rüstem Paşa Mosque",d:"30 min. Sits directly above the fabric bazaar and is covered floor to dome in İznik tiles — arguably the finest tilework in Istanbul, and the most fitting thing you could look at on a textile trip. Free, easy to miss, entrance is up a staircase between the shops."},
+   {t:"13:30",n:"Rüstem Paşa Mosque",d:"30 min. Directly above the fabric bazaar, covered floor to dome in İznik tiles. The finest tilework in the city and the most fitting thing to look at on a textile trip. Free."},
    {m:"Walk · 5 min"},
-   {t:"14:00",n:"Spice Bazaar, then lunch",d:"75 min. Eminönü waterfront afterwards for a fish sandwich, or Pandeli above the bazaar gate."},
+   {t:"14:15",n:"Spice Bazaar + lunch",d:"75 min. Eminönü waterfront afterwards."},
    {m:"Walk · 10 min uphill"},
-   {t:"15:15",n:"Süleymaniye Mosque",d:"45 min. Sinan's masterpiece, free, and the terrace has the best panorama of the Golden Horn in the city."},
+   {t:"15:45",n:"Süleymaniye Mosque",d:"45 min. Sinan's masterpiece, free, and the best panorama of the Golden Horn there is."},
    {m:"Walk · 12 min · or tram 2 stops"},
-   {t:"16:15",n:"Grand Bazaar",d:"75 min. Silk scarves, pashmina, hand-woven velvet at Yazzma, Takkeciler Sk. Gifts, not sourcing. Closed tomorrow, so today is the only chance."},
-   {m:"Tram + metro · 35 min"},
-   {t:"18:30",n:"Back in Osmanbey",d:"Osmanbey shuts 13:00–15:00 on Saturdays and Günerteks closes entirely — nothing was lost by spending the day here."}
-  ]},
+   {t:"16:45",n:"Grand Bazaar",d:"75 min. Silk, pashmina, hand-woven velvet at Yazzma. Closed tomorrow, so today is the only chance."},
+   {t:"20:00",n:"Dinner — Karaköy Lokantası",d:"On the way home. Michelin-listed, tiled room, excellent mezze. Reserve."}]},
  {d:6,dow:"Sunday",t:"Kadıköy, the ferry, one open shop",
-  sm:"Asian side · easy day · ferry both ways",
-  budget:"Out at 10:30 · back after dark",
+  sm:"Asian side · slow day · ferry both ways",
+  budget:"EVERY WHOLESALE DISTRICT IS CLOSED TODAY",
   stops:[
-   {t:"10:30",n:"Walk or taxi to Kabataş",d:"15 min. Get an Istanbulkart if you haven't — it covers the ferries."},
+   {t:"10:30",n:"Taxi to Kabataş",d:"20 min. Get İstanbulkart if you haven't — it covers the ferries."},
    {m:"Ferry · 25 min · sit outside"},
    {t:"11:30",n:"Kadıköy market streets",d:"90 min. Fish market, spice stalls, coffee. No agenda."},
-   {t:"13:00",n:"Lunch at Çiya Sofrası",d:"An hour. Anatolian regional cooking, cheap and extraordinary. No reservations — go at one."},
+   {t:"13:00",n:"Lunch — Çiya Sofrası",d:"An hour. Anatolian regional cooking, cheap and extraordinary. No reservations, go at one."},
    {m:"Walk · 4 min"},
-   {t:"14:15",n:"Burçak Kumaş, Vahapbey Sk 3",d:"90 min. Opens 13:00 — the ONLY fabric shop open in Istanbul today. Linen specialist, English spoken, buy by the metre. Mu-Ne-Gü and Annem are on the same street if there's appetite."},
+   {t:"14:15",n:"Burçak Kumaş, Vahapbey Sk 3",d:"90 min. Opens 13:00 — the ONLY fabric shop open in İstanbul today. Linen, English spoken, buy by the metre. Mu-Ne-Gü and Annem are on the same street."},
    {m:"Walk · 12 min"},
    {t:"16:30",n:"Moda seafront",d:"Tea, the walk along the water, sunset from the point."},
    {m:"Ferry · 25 min"},
-   {t:"19:30",n:"Dinner back across",d:"Or eat in Kadıköy and take the late ferry."}
-  ]},
+   {t:"20:00",n:"Dinner back across, or eat in Kadıköy",d:"The late ferry runs — no rush."}]},
  {d:7,dow:"Monday",t:"Zeytinburnu — the volume day",
   sm:"Full day · car and driver · 6 stops",
-  budget:"09:00–18:00 · driver waits at each stop",
+  budget:"09:00–18:30 · DRIVER WAITS AT EACH STOP",
   stops:[
-   {t:"09:00",n:"Driver collects from the hotel",d:"Confirm he knows Telsiz and Seyitnizam specifically. Not a district most Istanbul drivers work."},
+   {t:"09:00",n:"Driver collects from the hotel",d:"Confirm he knows Telsiz and Seyitnizam specifically — not a district most İstanbul drivers work."},
    {m:"Drive · 30–40 min"},
-   {t:"09:45",n:"Aygün Kumaşçılık",d:"75 min. Stock and lot fabric, best reputation in the district. Start here while you're sharp."},
+   {t:"09:45",n:"Aygün Kumaşçılık",d:"75 min. Stock and lot fabric, best reputation in the district."},
    {m:"Drive · 5 min"},
-   {t:"11:15",n:"Avcı Tekstil",d:"75 min. Export leftovers well below market. Full rolls from cancelled orders."},
+   {t:"11:15",n:"Avcı Tekstil",d:"75 min. Export leftovers well below market."},
    {m:"Drive · 6 min"},
-   {t:"12:45",n:"Lunch — esnaf lokantası",d:"45 min. Eat where the traders eat, not where the map suggests."},
+   {t:"12:45",n:"Lunch — esnaf lokantası",d:"45 min. Eat where the traders eat."},
    {m:"Drive · 5 min"},
    {t:"13:45",n:"Textile Altunkaya",d:"60 min. Fleece, lacoste, three-thread knits."},
    {m:"Drive · 5 min"},
    {t:"15:00",n:"Taşgıran + Özer",d:"75 min for both. Jersey, penye, manufacturer-direct."},
    {m:"Drive · 5 min"},
-   {t:"16:30",n:"Textile Erkan",d:"45 min. Printed fabrics, new designs weekly. Ask about printing your own artwork."},
+   {t:"16:30",n:"Textile Erkan",d:"45 min. Printed fabrics — ask about printing your own artwork."},
    {m:"Drive · 35–50 min back"},
-   {t:"18:15",n:"Hotel",d:"Log every swatch TONIGHT. By Thursday you won't remember which is which."}
-  ]},
+   {t:"18:30",n:"Hotel",d:"Log every swatch TONIGHT. By Thursday you won't remember which is which."},
+   {t:"20:00",n:"Dinner — Kiva, Bomontiada",d:"Five minutes on foot. You will not want to travel tonight."}]},
  {d:8,dow:"Tuesday",t:"Osmanbey — the buying day",
-  sm:"Full day · all on foot · appointments",
-  budget:"09:30–18:30 · nothing further than 400 m",
+  sm:"Full day · appointments · all walkable once there",
+  budget:"09:30–18:30 · NOTHING FURTHER THAN 400 M APART",
   stops:[
+   {m:"Taxi · 5 min from the hotel"},
    {t:"09:30",n:"ASNOVA, Rumeli Cd",d:"75 min, by appointment. Premium crepe and chiffon."},
    {m:"Walk · 4 min"},
    {t:"11:00",n:"Günerteks",d:"75 min, by appointment. Best acetate satin in the district. 2nd floor of Ümit İş Hanı."},
    {m:"Walk · 2 min"},
-   {t:"12:30",n:"Lunch",d:"45 min. Anywhere on Halaskargazi."},
+   {t:"12:30",n:"Lunch",d:"45 min, anywhere on Halaskargazi."},
    {m:"Walk · 3 min"},
    {t:"13:30",n:"Bağzibağli",d:"60 min. Eveningwear and suiting, tailoring on site."},
    {m:"Walk · 4 min"},
    {t:"14:45",n:"Lavin Tekstil",d:"60 min. Silks and hand embroidery. Inspect the roll before paying."},
    {m:"Walk · 5 min"},
    {t:"16:00",n:"Kaptan",d:"60 min. Ask the price per metre before showing interest."},
-   {m:"Walk · 3 min"},
    {t:"17:15",n:"Second visits",d:"Beril, Burç, Off Örme — whoever earned it on Friday."},
-   {t:"18:30",n:"Consolidate",d:"One list of everything ordered, with prices and lead times, before the fair opens tomorrow."}
-  ]},
+   {t:"20:00",n:"Dinner — Yeni Lokanta",d:"4.8 from 2,667. The best meal of the trip. Book this from Dubai."}]},
  {d:9,dow:"Wednesday",t:"Texhibition · map the floor",
-  sm:"Expo Center · full day · metro or taxi",
-  budget:"Leave 08:45 · 5 halls · buy nothing",
+  sm:"Expo Center, Yeşilköy · full day",
+  budget:"LEAVE 08:45 · 5 HALLS · BUY NOTHING",
   stops:[
-   {t:"08:45",n:"Leave the hotel",d:"M2 from Osmanbey to Yenikapı, change to M1A, off at DTM-İstanbul Fuar Merkezi."},
-   {m:"Metro · 50 min · or taxi 40–60 min"},
-   {t:"10:00",n:"Doors open — ReValue Stock Hub first",d:"60 min. Certified deadstock in small lots. The one area where our quantities genuinely work, so see it before the crowd."},
-   {t:"11:00",n:"Halls 1–3",d:"2.5 hours. Swatch, card, stand number, move on. Do not negotiate."},
+   {t:"08:45",n:"Leave the hotel",d:"Walk 14 min to Osmanbey M2, or taxi. M2 to Yenikapı, change to M1A, off at DTM-İstanbul Fuar Merkezi."},
+   {m:"Metro · 50 min · or taxi 45–60 min"},
+   {t:"10:00",n:"ReValue Stock Hub first",d:"60 min. Certified deadstock in small lots — the one area where AQUI's quantities genuinely work. See it before the crowd."},
+   {t:"11:00",n:"Halls 1–3",d:"2.5 hrs. Swatch, card, stand number, move on. Do not negotiate."},
    {t:"13:30",n:"Lunch on site",d:"45 min. Rest the feet properly."},
-   {t:"14:15",n:"Halls 4–5",d:"2 hours. Same rule."},
-   {t:"16:15",n:"Trend Lab",d:"45 min. Next season's colour and material direction, set by the forecasters. Free intelligence."},
-   {m:"Metro · 50 min"},
-   {t:"18:30",n:"Sort the cards",d:"Three piles: return tomorrow, maybe, no. Tomorrow runs on this list."}
-  ]},
+   {t:"14:15",n:"Halls 4–5",d:"2 hrs. Same rule."},
+   {t:"16:15",n:"Trend Lab",d:"45 min. Next season's colour and material direction from the forecasters. Free intelligence, and directly useful for the next collection."},
+   {t:"19:30",n:"Dinner — Alta Nişantaşı",d:"Easy and close. Sort the cards into return / maybe / no before bed."}]},
  {d:10,dow:"Thursday",t:"Texhibition · the productive day",
-  sm:"Expo Center · full day · the negotiating day",
-  budget:"Leave 09:00 · target list only",
+  sm:"Negotiating day · target list only",
+  budget:"THE DAY THE ORDERS ACTUALLY HAPPEN",
   stops:[
    {t:"09:00",n:"Leave the hotel",d:"Same route."},
    {m:"Metro · 50 min"},
-   {t:"10:00",n:"Marked stands, in order",d:"4 hours. Sit down. Minimums, lead times, price per metre at volume, sampling terms, who they ship with."},
+   {t:"10:00",n:"Marked stands, in order",d:"4 hrs. Sit down. Minimums, lead times, price per metre at volume, sampling terms, who they ship with."},
    {t:"14:00",n:"Lunch",d:"45 min."},
-   {t:"14:45",n:"Second pass",d:"2 hours. The ones that need a decision, and anything the morning turned up."},
-   {t:"16:45",n:"BlueBlack denim hall",d:"45 min, only if denim is in the range. Otherwise skip and save the legs."},
+   {t:"14:45",n:"Second pass",d:"2 hrs. The ones that need a decision."},
    {m:"Metro · 50 min"},
-   {t:"19:30",n:"Dinner out",d:"The one proper meal of the working stretch. Book it before you fly."}
-  ]},
+   {t:"20:00",n:"Dinner — Mikla",d:"Rooftop of the Marmara Pera, best view in the city. Closed Sundays, so tonight is the slot. Book from Dubai."}]},
  {d:11,dow:"Friday",t:"Close the fair, ship the rolls",
-  sm:"Half day fair · then freight · critical day",
-  budget:"Fair 10:00–14:00 · agent by 16:00",
+  sm:"Half day fair · then freight · critical",
+  budget:"SHIP TODAY — NOT SATURDAY",
   stops:[
-   {t:"10:00",n:"Fair, final pass",d:"3.5 hours. Close what's outstanding, collect final sample cuts, confirm every order in writing by email before you leave the hall."},
+   {t:"10:00",n:"Fair, final pass",d:"3.5 hrs. Close what's outstanding, collect final sample cuts, confirm every order in writing by email before you leave the hall."},
    {m:"Metro · 50 min"},
-   {t:"14:30",n:"Freight agent",d:"90 min. Hand over everything bought. Get the airway bill IN WRITING before you leave the office. Photograph it."},
-   {t:"16:30",n:"Any last Osmanbey returns",d:"They're open until 19:00 today."},
-   {t:"20:00",n:"Dinner",d:"Ship today, not tomorrow — cargo offices keep short Saturday hours and you can't risk it on a departure weekend."}
-  ]},
- {d:12,dow:"Saturday",t:"Morning returns, then the city",
+   {t:"14:30",n:"Freight agent",d:"90 min. Hand over everything bought. Get the airway bill IN WRITING before you leave the office, and photograph it."},
+   {t:"17:00",n:"Any last Osmanbey returns",d:"Open until 19:00 today."},
+   {t:"20:30",n:"Dinner — Gönen Rooftop, Taksim",d:"4.8 from 2,599. Sunset over the old city. The work is done."}]},
+ {d:12,dow:"Saturday",t:"Morning returns, then the city is yours",
   sm:"Osmanbey closes 13:00 · afternoon free",
-  budget:"Work until 13:00 · nothing after",
+  budget:"WORK STOPS AT 13:00. NO EXCEPTIONS.",
   stops:[
-   {t:"09:30",n:"Osmanbey second visits",d:"3 hours. Anything owed a return. Günerteks is closed today; everything else shuts at 13:00."},
+   {t:"09:30",n:"Osmanbey second visits",d:"3 hrs. Anything owed a return. Günerteks is closed today; everything else shuts at 13:00."},
    {t:"13:00",n:"Lunch",d:"Line drawn. No more fabric this trip."},
-   {m:"Taxi · 25 min to İstinye Park · or walk 9 min to Abdi İpekçi"},
-   {t:"14:30",n:"İstinye Park or Nişantaşı",d:"4 hours. İstinye Park has the best range in the city under one roof. Abdi İpekçi is where the Turkish designers actually are and it's nine minutes from the hotel."},
-   {t:"19:30",n:"Dinner on the Bosphorus",d:"Ortaköy or Bebek. Book from Dubai."}
-  ]},
- {d:13,dow:"Sunday",t:"Slow morning, then home",
+   {m:"Taxi · 6 min to Nişantaşı · or 25 min to İstinye Park"},
+   {t:"14:30",n:"Nişantaşı, on foot",d:"Abdi İpekçi, Vakko, Beymen and the side streets. This is where the Turkish designers actually are — and worth seeing what they're charging for what fabric."},
+   {t:"17:00",n:"Kılıç Ali Paşa Hamamı, Karaköy",d:"2 hrs. 16th-century Sinan bathhouse, beautifully restored, 4.7 from 3,120. Book ahead. The one properly indulgent thing on this trip."},
+   {t:"21:00",n:"Dinner — Mira, Arnavutköy",d:"Fish on the water. Last proper dinner."}]},
+ {d:13,dow:"Sunday",t:"Palace, then home",
   sm:"Everything closed · flight 18:35",
-  budget:"Check out 14:00 · 3 hrs to the gate",
+  budget:"CHECK OUT 14:00 · 3 HRS DOOR TO GATE",
   stops:[
-   {t:"09:00",n:"Dolmabahçe Palace",d:"2.5 hours, and book online the night before. Open 09:00–17:00 on Sundays, closed Mondays — this is the one morning of the trip it fits. Fifteen minutes from the hotel, and the most spectacular interior in Istanbul. Go at opening; the queue is brutal by ten."},
-   {m:"Walk · 20 min along the water · or taxi 8 min"},
-   {t:"12:00",n:"Ortaköy, lunch by the bridge",d:"90 min. Or skip the palace entirely and just take a Bosphorus ferry — equally good use of a last morning."},
+   {t:"09:00",n:"Dolmabahçe Palace",d:"2.5 hrs, and book online the night before. Open 09:00–17:00 Sundays, closed Mondays — this is the one morning of the trip it fits. The most spectacular interior in İstanbul, and the Ottoman textile detailing is worth the ticket on its own. Go at opening."},
+   {m:"Walk 20 min along the water · or taxi 8 min"},
+   {t:"12:00",n:"Ortaköy, lunch by the bridge",d:"90 min."},
    {t:"14:00",n:"Check out",d:"Swatches, catalogues and sample cuts in the luggage. Commercial quantities went by freight on Friday."},
    {m:"Transfer · 60–75 min"},
    {t:"15:30",n:"IST",d:"Process the VAT refund BEFORE check-in, not after security."},
-   {t:"18:35",n:"FZ 728 → DXB",d:"Lands 00:45."}
-  ]}
+   {t:"18:35",n:"FZ 728 → DXB",d:"Lands 00:45."}]}
 ];
 
-const HOTELS=[
- {n:"TZL Suites Hotel Nişantaşı",pick:true,badge:"BEST BALANCE",
-  m:"Teşvikiye · 9.2 Superb from 1,193 · Standard Suite · breakfast included",
-  p:"AED 7,633",note:"taxes included",
-  w:[["Fabric streets","10 min"],["Nişantaşı shops","10 min"],["Kabataş ferry","28 min"]],
-  x:"Cheapest of the Nişantaşı options by a wide margin and rated higher than the Westin. Ten minutes' walk to Şafak Sokak rather than two — but it saves nearly AED 5,000 against the Westin, which is a quarter of the fabric budget. Suite with breakfast.",
-  g:"41.054519,28.996495"},
- {n:"The Westin İstanbul Nişantaşı",pick:false,badge:"CLOSEST TO THE FABRIC",
-  m:"Halaskargazi Cd 38 · 9.0 Superb from 1,447 · Deluxe King, city view",
-  p:"AED 12,685",note:"11,428 + 1,257 taxes",
-  w:[["Fabric streets","2 min"],["Nişantaşı shops","9 min"],["Kabataş ferry","33 min"]],
-  x:"The best location in the city for this trip — you can walk back mid-morning to drop samples instead of carrying them all day. It's also the most expensive on the list and AED 5,000 more than TZL for eight minutes of walking.",
-  g:"41.051541,28.9877268"},
- {n:"Lasagrada Hotel Istanbul",pick:false,badge:"",
-  m:"Halaskargazi Cd 96 · 8.7 Fabulous from 1,446 · Deluxe Double",
-  p:"AED 11,913",note:"taxes included",
-  w:[["Fabric streets","4 min"],["Nişantaşı shops","12 min"],["Osmanbey metro","2 min"]],
-  x:"Four minutes from the fabric streets and sits in the middle of the bridal and eveningwear strip. Priced close to the Westin with a lower rating, and reviews are polarised — one guest abandoned a nine-night booking. Read the recent ones first.",
-  g:"41.0542534,28.9876262"},
- {n:"Hilton Istanbul Bomonti",pick:false,badge:"",
-  m:"Silahşör Cd 42 · 9.3 Superb from 6,379 · Twin Room · free cancellation",
-  p:"AED 8,718",note:"7,854 + 864 taxes",
-  w:[["Fabric streets","17 min"],["Nişantaşı shops","25 min"],["Osmanbey metro","14 min"]],
-  x:"Highest-rated big hotel in Şişli and free cancellation, which is worth something at this notice. The cost is 1.4 km to the fabric streets — a 34-minute round trip you'd repeat most days.",
-  g:"41.0584649,28.9794965"},
- {n:"Shirisha Hotel",pick:false,badge:"CHEAPEST",
-  m:"Sultanahmet · 9.8 Exceptional from 37 · Standard Double or Twin",
-  p:"AED 4,734",note:"taxes included",
-  w:[["Fabric streets","6.3 km"],["Sultanhamam","10 min"],["Nişantaşı shops","6.0 km"]],
-  x:"Extraordinary value and a near-perfect rating, though on only 37 reviews. Ten minutes from Sultanhamam, which is one day of the trip. Six kilometres from Osmanbey, which is three.",
-  g:"41.00962,28.974415"},
- {n:"DoubleTree by Hilton Old Town",pick:false,badge:"",
-  m:"Beyazıt · 8.4 Very good from 1,422 · Twin Room · free cancellation",
-  p:"AED 6,061",note:"5,460 + 601 taxes",
-  w:[["Fabric streets","6.9 km"],["Sultanhamam","16 min"],["Expo Center","14.7 km"]],
-  x:"Good hotel, wrong side of the city. Tram and M2 on the doorstep and closest of the group to the fair, but every Osmanbey morning becomes a 40-minute commute each way.",
-  g:"41.0092866,28.9603593"},
- {n:"Bentley Hotel Old City",pick:false,badge:"",
-  m:"Bab-ı Ali Cd 2, Fatih · 9.4 Superb from 3,654 · Suite",
-  p:"AED 7,167",note:"taxes included",
-  w:[["Fabric streets","6.4 km"],["Sultanhamam","11 min"],["Nişantaşı shops","6.2 km"]],
-  x:"Well reviewed and central for the historic sites. Same problem as the rest of the Old Town group: it optimises for the one day you spend at Sultanhamam, not the three at Osmanbey.",
-  g:"41.0085663,28.973545"},
- {n:"Mövenpick Istanbul Old Town",pick:false,badge:"",
-  m:"Zeyrek · 8.8 Fabulous from 297 · Superior Suite",
-  p:"AED 9,862",note:"8,885 + 977 taxes",
-  w:[["Fabric streets","6.1 km"],["Sultanhamam","19 min"],["Zeytinburnu","5.6 km"]],
-  x:"New, excellent spa, closest of any option to Zeytinburnu. But that's one day, and it's 6 km from the fabric streets you'll walk three times.",
-  g:"41.0175145,28.9566745"},
- {n:"AJWA Sultanahmet",pick:false,badge:"MOST EXPENSIVE",
-  m:"Piyer Loti Cd 30 · 9.4 Superb from 1,848 · Deluxe Double, street view",
-  p:"AED 12,510",note:"taxes included",
-  w:[["Fabric streets","6.9 km"],["Sultanhamam","14 min"],["Nişantaşı shops","6.6 km"]],
-  x:"A beautiful Ottoman mansion and the nicest hotel on this list to actually stay in. It's also the most expensive and the furthest from the work. This is the choice for a different trip.",
-  g:"41.0063838,28.9691267"}
-];
+/* ═══════════ EAT & DRINK ═══════════ */
+const EAT={
+ breakfast:[
+  {n:"Hotel breakfast",a:"Hilton Bomonti",x:"Reviewers rate it highly and it's the path of least resistance on working mornings. Use it Mon–Fri.",tags:["In the hotel"],g:"41.0584649,28.9794965"},
+  {n:"Çeşme Bazlama Kahvaltı",a:"Ahmet Fetgeri Sok 40, Teşvikiye",x:"Unlimited Aegean breakfast, endless small plates, homemade jams. 4.6 from 2,332 and there are three branches within a block. The weekend treat — go early, the queue is real.",tags:["09:00–17:00 daily","Go early"],g:"41.0493843,28.9947883"},
+  {n:"Van Breakfast House",a:"Poyracık Sok 38, Teşvikiye",x:"Eastern Turkish breakfast, quieter than Bazlama, opens an hour earlier. 4.5 from 888.",tags:["08:00–17:00 daily"],g:"41.0536684,28.9940363"}],
+ dinners:[
+  {day:"FRI 4",n:"Zoya's House",a:"Bostan Sk 13, Harbiye",x:"4.7 from 7,945. Garden room, cocktails, easy food. Open to midnight — exactly right for a night you land at 2am.",tags:["No booking needed"],g:"41.049635,28.9924555",t:"+902122593900"},
+  {day:"SAT 5",n:"Karaköy Lokantası",a:"Kemankeş Cd 57, Karaköy",x:"Michelin-listed, tiled room, superb mezze. On the way back from Eminönü, so it costs you no extra travel.",tags:["Reserve","To 23:30"],g:"41.0247498,28.9801935",t:"+902122924455"},
+  {day:"SUN 6",n:"Çiya Sofrası",a:"Güneşlibahçe Sok, Kadıköy",x:"Anatolian regional cooking, an İstanbul institution. Cheap and extraordinary. No reservations.",tags:["No booking","To 22:00"],g:"40.989254,29.0241904",t:"+902164185115"},
+  {day:"MON 7",n:"Kiva, Bomontiada",a:"Birahane Sk 1/A",x:"Five minutes' walk from the hotel, in the old beer factory courtyard. Romantic, calm, very good sea bass. After eight hours in Zeytinburnu you will not want to travel.",tags:["5 min walk","To 00:00"],g:"41.0582913,28.9808932",t:"+902122962008"},
+  {day:"TUE 8",n:"Yeni Lokanta",a:"Kumbaracı Yokuşu 66/B, Beyoğlu",x:"4.8 from 2,667 — the best-rated restaurant on this list. Nine-course tasting menu with Turkish wine pairing. The one big dinner. BOOK FROM DUBAI.",tags:["BOOK NOW","To 00:30"],g:"41.0295319,28.9756319",t:"+902122922550"},
+  {day:"WED 9",n:"Alta Nişantaşı",a:"Süleyman Nazif Sk 5/2",x:"Classic Turkish, live music some nights, unfussy. You'll have been on your feet nine hours at the fair.",tags:["16:00–02:00"],g:"41.0504036,28.9890341",t:"+902122340084"},
+  {day:"THU 10",n:"Mikla",a:"The Marmara Pera, Meşrutiyet Cd 15",x:"Rooftop, Michelin, the best view in İstanbul. Closed Sundays so Thursday is the slot. BOOK FROM DUBAI.",tags:["BOOK NOW","Closed Sun"],g:"41.0310369,28.9741962",t:"+902122935656"},
+  {day:"FRI 11",n:"Gönen Rooftop",a:"Aydede Cd 15, kat 11, Taksim",x:"4.8 from 2,599. Ocakbaşı grill on the 11th floor with the old city laid out below. Blankets when it turns cool. The freight has gone — this is the celebration.",tags:["To 02:00"],g:"41.0385356,28.983932",t:"+905331326653"},
+  {day:"SAT 12",n:"Mira, Arnavutköy",a:"Bebek Arnavutköy Cd 70",x:"4.3 from 594, family-run, on the water. Avoid Bebek Balıkçı up the road — it's 3.8 and the reviews are a steady drumbeat of bill shock.",tags:["To 23:30","Reserve"],g:"41.0674257,29.0444508",t:"+902122653131"}],
+ bars:[
+  {n:"Cloud 34",a:"34th floor, Hilton Bomonti",x:"Your own hotel. Panoramic İstanbul from the 34th floor, well-made classic cocktails, 4.7 from 148. Zero travel, zero planning. Closed Sundays.",tags:["IN THE HOTEL","21:00–01:00","Closed Sun"],g:"41.05883,28.9791353"},
+  {n:"The Populist",a:"Bomontiada, Birahane Sk 1/D",x:"Craft brewery in the old Bomonti beer factory, 5 min walk. Courtyard seating, lively, resident cats. 4.4 from 2,213.",tags:["5 min walk","To 01:00 Fri/Sat"],g:"41.058003,28.9803698"},
+  {n:"Monochrome",a:"Bomontiada",x:"Wine and small plates in the same courtyard, calmer than the Populist. 4.3 from 884, open from 10am if you just want coffee.",tags:["5 min walk","To 01:00"],g:"41.0580758,28.9807922"},
+  {n:"Cicchetti Cocktail Bar",a:"Abdi İpekçi Cd, Nişantaşı",x:"4.6, serious mixology, live music Thursdays. Pair it with the Nişantaşı afternoon on the 12th. Closed Sundays.",tags:["Closed Sun","To 00:00"],g:"41.0477411,28.9932331",t:"+902122410002"},
+  {n:"barrio.",a:"Poyracık Sok 45/7, Teşvikiye",x:"4.8 and it feels like someone's very stylish living room. Only open Friday and Saturday evenings, which makes it a Sat 12 option.",tags:["FRI & SAT ONLY","17:00–01:00"],g:"41.0526747,28.9951435"},
+  {n:"No Fish Today",a:"Atiye Sk 10, Teşvikiye",x:"4.7, small and warm, open every day until 2am. The reliable late one.",tags:["Daily to 02:00"],g:"41.048576,28.993435",t:"+902122592377"}]
+};
 
-const NEARBY=[
- {grp:"Walk from the hotel", c:"var(--iznik)", note:"Şişli is where Istanbul works and shops rather than a sightseeing district — but these are all on foot from Osmanbey, and good for an hour when a day runs short.",
+/* ═══════════ THINGS TO DO ═══════════ */
+const DO=[
+ {grp:"On your doorstep",c:"var(--gold)",note:"Bomonti is a working neighbourhood, but these are all within a short walk of the hotel.",
   items:[
-   {n:"Nişantaşı & Abdi İpekçi",d:"The prettiest streets in the district. Cafés, boutiques, old apartment blocks with carved facades. Nine minutes from the hotel and the natural evening walk.",w:"9 min",h:"Always open",g:"41.0490,28.9940"},
-   {n:"Harbiye Military Museum",d:"Far better than it sounds — 4.7 from over 5,000 reviews. Ottoman armour, campaign tents, Sinan-era weaponry, and the Mehter band performing in the afternoons. Atatürk studied in this building.",w:"8 min",h:"Closes 16:00 — go early afternoon",g:"41.0481642,28.9878852"},
-   {n:"Atatürk Museum",d:"Halaskargazi Cd 140 — on the same street as the fabric shops. His Istanbul house, his belongings, and it costs nothing. Twenty minutes well spent between appointments.",w:"6 min",h:"9:00–17:00 · CLOSED MONDAYS · free",g:"41.0563913,28.9871456"},
-   {n:"Maçka Park & the teleferik",d:"A three-minute cable car across the park towards Taksim, on your Istanbulkart. Locals barely use it. Good views over the park to the Bosphorus and a nice way to get down to Taksim on foot.",w:"14 min",h:"08:00–20:00 daily",g:"41.045599,28.9942264"},
-   {n:"Bomontiada",d:"A 19th-century beer factory turned courtyard of bars, restaurants and the Ara Güler photography museum. Where Şişli goes in the evening. Live music at Babylon.",w:"18 min",h:"09:00–01:00 daily",g:"41.0581179,28.9808484"}
-  ]},
- {grp:"Two or three metro stops", c:"var(--turq)", note:"M2 runs from Osmanbey. Taksim is one stop, Şişhane three. All of this is fifteen minutes door to door.",
+   {n:"Bomontiada",d:"A 19th-century beer factory turned courtyard of bars, restaurants and the Ara Güler photography museum. Live music at Babylon. Five minutes on foot and open until 1am — this is your default evening.",w:"5 min",h:"09:00–01:00 daily",g:"41.0581179,28.9808484"},
+   {n:"Cloud 34",d:"The 34th-floor bar in your own hotel. Go once at sunset, even if you go nowhere else.",w:"In the hotel",h:"21:00–01:00 · closed Sun",g:"41.05883,28.9791353"},
+   {n:"Atatürk Museum",d:"Halaskargazi Cd 140, on the same street as the fabric shops. His İstanbul house, free entry, twenty good minutes between appointments.",w:"14 min",h:"09:00–17:00 · CLOSED MON · free",g:"41.0563913,28.9871456"}]},
+ {grp:"Nişantaşı & Harbiye",c:"var(--crystal)",note:"Six minutes by taxi. Where the shopping, the good bars and the prettiest streets are.",
   items:[
-   {n:"Dolmabahçe Palace",d:"The most spectacular interior in the city — the Ottoman court's answer to Versailles, on the water at Beşiktaş. Book online; the queue at the gate is punishing. Allow two and a half hours.",w:"15 min taxi",h:"09:00–17:00 · CLOSED MONDAYS",g:"41.0391643,29.0004594"},
-   {n:"Taksim & İstiklal Caddesi",d:"One metro stop. The long pedestrian spine of modern Istanbul — bookshops, arcades, the old tram, and passages full of meyhanes off to the sides. Busy, and worth it once.",w:"1 metro stop",h:"Always open",g:"41.0369,28.9850"},
-   {n:"Galata Tower",d:"Three stops then a short walk down. Genuine 360° view over the whole city. Queues can run over an hour in the afternoon — go before ten or after eight.",w:"3 stops + 8 min",h:"08:30–22:00 daily",g:"41.0256241,28.9741321"},
-   {n:"Istanbul Modern, Galataport",d:"Renzo Piano building on the waterfront, with a rooftop terrace worth the entry on its own. Turkish modern and contemporary art, and the Galataport shopping strip attached.",w:"3 stops + 12 min",h:"10:00–18:00 · CLOSED MONDAYS",g:"41.0259196,28.9828383"},
-   {n:"Pera Museum",d:"Smaller and calmer than Istanbul Modern. Late Ottoman painting, Kütahya tiles, and good temporary shows. Free entry on Friday evenings after six.",w:"3 stops + 6 min",h:"10:00–19:00 · CLOSED MONDAYS · Sun 12–18",g:"41.0318536,28.9750578"},
-   {n:"Ortaköy & the Bosphorus",d:"Fifteen minutes by taxi. Waterfront mosque under the bridge, kumpir stalls, and the ferry pier. The obvious place for a last dinner.",w:"15 min taxi",h:"Always open",g:"41.0473,29.0269"}
-  ]},
- {grp:"Sultanahmet — do it on Saturday the 5th", c:"var(--bole)", note:"This is the scheduling trick worth knowing. You are already going to Eminönü on Saturday for Sultanhamam and the trims, and every famous sight in Istanbul is a fifteen-minute walk from Tahtakale. Finish the trims by one o'clock and the whole afternoon is here — no separate trip needed.",
+   {n:"Abdi İpekçi & the side streets",d:"Boutiques, Turkish designers, Vakko and Beymen flagships, carved apartment facades. It doubles as market research — see what's selling and in what fabric.",w:"6 min taxi",h:"Shops ~10:00–20:00",g:"41.0490,28.9940"},
+   {n:"Maçka Park & the teleferik",d:"A three-minute cable car across the park towards Taksim, on your İstanbulkart. Locals barely use it. Lovely at dusk.",w:"10 min taxi",h:"08:00–20:00 daily",g:"41.045599,28.9942264"},
+   {n:"Harbiye Military Museum",d:"Better than it sounds — 4.7 from 5,384. Ottoman armour, campaign tents, and the Mehter band performing in the afternoons.",w:"8 min taxi",h:"Closes 16:00",g:"41.0481642,28.9878852"}]},
+ {grp:"Worth the trip",c:"var(--moon)",note:"Slot these into the days that already go that way — Saturday the 5th and Sunday the 13th do most of the work.",
   items:[
-   {n:"Rüstem Paşa Mosque",d:"Four minutes from the fabric bazaar and directly above the shops. Covered in İznik tiles from floor to dome — the finest tilework in the city, and the most fitting thing to look at on a textile trip. Free. The entrance is an easy-to-miss staircase between shopfronts.",w:"4 min from Bursa Pazarı",h:"06:00–21:30 daily · free",g:"41.0175772,28.9688269"},
-   {n:"Spice Bazaar",d:"Five minutes from the trims. Spices, dried fruit, lokum, tea. Touristy and priced accordingly, but a good half hour and the building itself is worth it.",w:"5 min",h:"09:00–19:00 daily",g:"41.0165,28.9707"},
-   {n:"Süleymaniye Mosque",d:"Ten minutes uphill. Sinan's masterpiece and rated higher than anything else in Istanbul at 4.9. Free, vast, and the terrace has the best view of the Golden Horn there is. Süleyman and Hürrem are buried in the garden.",w:"10 min uphill",h:"08:30–21:30 daily · free",g:"41.016047,28.9639711"},
-   {n:"Grand Bazaar",d:"Twelve minutes on. Silk, pashmina, ceramics, gold. Yazzma on Takkeciler Sk for hand-woven ikat and velvet. Closed Sundays, so Saturday is the only chance this trip.",w:"12 min",h:"08:30–19:00 · CLOSED SUNDAYS",g:"41.0104753,28.9682718"},
-   {n:"Hagia Sophia",d:"Two tram stops or a twenty-minute walk. A working mosque now — the ground floor is free but restricted during prayers, and the upper gallery is a paid tourist ticket. Some scaffolding inside from the current restoration.",w:"2 tram stops",h:"Open daily · closed to visitors at prayer",g:"41.008583,28.980175"},
-   {n:"Basilica Cistern",d:"Underground Byzantine reservoir, lit and reflected, with the two Medusa heads at the far end. Buy online — the queue at nine in the morning is already long. The evening slot after 19:30 is the better lighting.",w:"2 tram stops",h:"09:00–18:30, then 19:30–22:00",g:"41.008384,28.977878"},
-   {n:"Topkapı Palace",d:"Enormous — three hours minimum, and the Ottoman textile and kaftan collection is directly relevant to what you are here for. CLOSED TUESDAYS. Better as its own morning than squeezed into Saturday.",w:"2 tram stops",h:"09:00–17:00 · CLOSED TUESDAYS",g:"41.0115195,28.9833789"},
-   {n:"Blue Mosque",d:"Across the park from Hagia Sophia. Free, and the İznik tiles inside are the reason to go. Shoulders and knees covered; scarves lent at the door.",w:"2 tram stops",h:"Open daily · closed at prayer",g:"41.0054,28.9768"}
-  ]}
+   {n:"Rüstem Paşa Mosque",d:"Four minutes from the fabric bazaar and directly above the shops. İznik tiles floor to dome — the finest in the city, and the most fitting thing to look at on a textile trip. Already in Saturday's plan.",w:"Sat 5",h:"06:00–21:30 · free",g:"41.0175772,28.9688269"},
+   {n:"Dolmabahçe Palace",d:"The most spectacular interior in İstanbul. The textile and furnishing detail alone justifies it. Open Sundays, closed Mondays — the last morning is the only slot it fits. Book online.",w:"Sun 13",h:"09:00–17:00 · CLOSED MON",g:"41.0391643,29.0004594"},
+   {n:"Kılıç Ali Paşa Hamamı",d:"16th-century Sinan bathhouse in Karaköy, restored, 4.7 from 3,120. Separate sessions for men and women. Book ahead — this is the treat, and it's in Saturday the 12th.",w:"Sat 12",h:"08:00–23:30 daily",g:"41.0261906,28.9806317"},
+   {n:"Basilica Cistern",d:"Underground Byzantine reservoir, lit and reflected, with the Medusa heads at the far end. The evening slot after 19:30 has far better lighting and no queue.",w:"Evening",h:"09:00–18:30, 19:30–22:00",g:"41.008384,28.977878"},
+   {n:"Istanbul Modern, Galataport",d:"Renzo Piano building on the waterfront with a rooftop terrace worth the entry alone. Turkish contemporary art plus the Galataport shops.",w:"20 min taxi",h:"10:00–18:00 · CLOSED MON",g:"41.0259196,28.9828383"},
+   {n:"Süleymaniye Mosque",d:"Sinan's masterpiece, rated 4.9, free, and the terrace has the best panorama of the Golden Horn there is. In Saturday's plan.",w:"Sat 5",h:"08:30–21:30 · free",g:"41.016047,28.9639711"}]},
+ {grp:"After dark",c:"var(--dim)",note:"İstanbul is better at night than during the day, and you'll be too tired to plan — so here it is planned.",
+  items:[
+   {n:"Sunset from Cloud 34",d:"Arrive around 20:00 in September. No booking, no travel, and it costs you nothing but the lift ride."},
+   {n:"Bosphorus ferry after dark",d:"The public ferry from Kabataş across and back, about 25 minutes each way on your İstanbulkart. The city lit from the water for the price of a bus fare — the best-value hour in İstanbul."},
+   {n:"Gönen or N'EVET rooftop",d:"Two rooftops in Taksim, both 4.8, both open past midnight. Gönen is in Friday the 11th's plan."},
+   {n:"İstiklal Caddesi",d:"The long pedestrian spine of modern İstanbul, at its best after 21:00. Bookshops, arcades, the old tram, and meyhanes down the side passages."},
+   {n:"Basilica Cistern, evening slot",d:"19:30–22:00. Better lighting, no queue, and genuinely atmospheric compared with the daytime crush."}]}
 ];
 
-const PREP=[
- "Both passports, and the visa position confirmed with the Turkish consulate",
- "Boarding passes and hotel confirmation saved offline",
- "Texhibition badges registered and saved offline on both phones",
- "Airport transfer pre-booked for the 00:50 arrival",
- "Checked baggage added to the flydubai booking, both ways",
- "Turkish lira in cash — Zeytinburnu prices move for it",
- "Two credit cards, and the bank told you're travelling",
- "Phone chargers, plugs, and a power bank",
- "eSIMs installed and tested",
- "Uber and BiTaksi installed",
- "40 business cards",
- "Tape measure",
- "Fabric scissors for sample cuts",
- "Swatch tote and a marker to number them",
- "The one-page sourcing brief: composition, weight, handle, target price, quantity",
- "Photos of current Wear Aqui pieces to show suppliers",
- "Comfortable shoes — Zeytinburnu day is 8 hours standing",
- "Freight agent quotes, all three"
+/* ═══════════ PREP ═══════════ */
+const TODO=[
+ "Book Hilton Bomonti — CHECK IN 3 SEPT, out 13 Sept (you land 00:50 on the 4th)",
+ "Confirm with the hotel: pool and spa open in September, not under refurbishment",
+ "Ask for a high floor, away from the conference and event spaces",
+ "Confirm visa position for BOTH passports with the Turkish consulate in Dubai",
+ "Register both Texhibition badges at texhibitionist.com — under Wear Aqui, with Layla's role",
+ "Add checked baggage to the flydubai booking, both directions",
+ "Pre-book the airport transfer with meet-and-greet for the 00:50 arrival",
+ "Book the car and driver for Monday 7 Sept — see the Stay tab",
+ "Email ASNOVA, Bağzibağli and Günerteks for Tuesday 8 Sept appointments",
+ "Book Yeni Lokanta (Tue 8) and Mikla (Thu 10)",
+ "Book Kılıç Ali Paşa Hamamı for Saturday 12 afternoon",
+ "Book Dolmabahçe Palace online for Sunday 13, 09:00",
+ "Get three freight quotes, İstanbul → Dubai",
+ "Print 40 business cards with WhatsApp and Instagram",
+ "Write the one-page sourcing brief and print two copies",
+ "Photograph current AQUI pieces to show suppliers",
+ "Buy eSIMs and install Uber + BiTaksi before you fly",
+ "Order Turkish lira cash — Zeytinburnu prices move for it"
 ];
 
-/* ══════════════ STATE ══════════════ */
-const LS='aqui-ist-v2';
-let S = {shops:{}, prep:{}};
-try{ S = Object.assign(S, JSON.parse(localStorage.getItem(LS)||'{}')); }catch(e){}
-function save(){ try{ localStorage.setItem(LS, JSON.stringify(S)); }catch(e){ alert('Storage full — remove a few photos.'); } }
-function sh(id){ if(!S.shops[id]) S.shops[id]={v:false,verdict:'',cats:[],note:'',photos:[]}; return S.shops[id]; }
+const APPS=[
+ {n:"Uber",x:"Works in İstanbul but dispatches a licensed yellow taxi on the official meter — no discount, but the route is tracked and you need no Turkish. Your existing card works."},
+ {n:"BiTaksi",x:"The largest driver pool in Türkiye, so the shortest waits. It may ask for a Turkish phone number — try your UAE number and keep Uber as the fallback."},
+ {n:"İstanbul Senin",x:"The city's own transport app. Buy and top up the İstanbulkart, which covers metro, tram, funicular, the teleferik AND the ferries."},
+ {n:"Google Maps — download İstanbul offline",x:"Do this before you fly. Zeytinburnu has patchy signal and you'll be navigating between unmarked warehouse streets."},
+ {n:"Google Translate — Turkish offline pack",x:"The camera mode reads fabric composition labels, which is genuinely useful when nobody on the street speaks English."},
+ {n:"WhatsApp",x:"How every Turkish supplier will contact you. Make sure it's on both phones and that your number works on the eSIM."},
+ {n:"XE or similar",x:"TRY to AED in your head is hard and the lira moves. Have a converter you trust."}
+];
 
-/* photos in IndexedDB */
+const PACK=[
+ {h:"Documents",items:["Both passports, visa position confirmed","Printed copies of both passports, kept separately","Boarding passes saved offline","Hotel confirmation showing 3 Sept check-in","Texhibition e-badges saved offline on BOTH phones","Travel insurance policy number"]},
+ {h:"Money",items:["Turkish lira in cash — it moves prices in Zeytinburnu","Two credit cards, banks told you're travelling","Small notes for taxis and the ferry","AED for the airport at both ends"]},
+ {h:"Work kit",items:["40 business cards","Tape measure, in centimetres","Small fabric scissors — CHECKED BAG, not cabin","Swatch tote, plus ziplock bags to keep sets together","Permanent marker and luggage tags for numbering swatches","The one-page sourcing brief, printed twice","Photos of current AQUI pieces on both phones","Notebook and two pens","Power bank and cables — three fair days will drain a phone","Fabric weight reference if you have one"]},
+ {h:"Clothes",items:["Comfortable closed shoes — Zeytinburnu is eight hours standing","A second pair, so one can dry","Light layers: September is warm by day, cool after dark","A jacket for the evenings and the ferry","Modest option for the mosques — covered shoulders and knees, a scarf","One smart outfit for Yeni Lokanta and Mikla","Swimwear for the hotel pool","Something you can move in for the hammam day"]},
+ {h:"Small things that matter",items:["Blister plasters — genuinely, this is the trip for them","Sunscreen","Any regular medication, in original packaging","Refillable water bottle","Universal adapter (Türkiye uses type C/F)","Foldable bag for what you buy in Nişantaşı"]}
+];
+
+const PHRASES=[
+ ["Metresi kaç lira?","What is the price per metre?"],
+ ["Top fiyatı ne kadar?","What is the price for the full roll?"],
+ ["Minimum sipariş ne kadar?","What is the minimum order?"],
+ ["Gramajı kaç?","What is the weight, in gsm?"],
+ ["Bu kumaşın bileşimi nedir?","What is this fabric's composition?"],
+ ["Numune alabilir miyim?","May I take a sample?"],
+ ["Stokta ne kadar var?","How much do you have in stock?"],
+ ["Dubai'ye gönderiyor musunuz?","Do you ship to Dubai?"],
+ ["Nakit ödersem indirim var mı?","Is there a discount if I pay cash?"],
+ ["Daha iyi fiyat verebilir misiniz?","Can you give a better price?"],
+ ["Başka renkleri var mı?","Do you have other colours?"],
+ ["Teslimat ne kadar sürer?","How long is the lead time?"]
+];
+
+/* ═══════════ STATE ═══════════ */
+const LS='aqui-ist-v3';
+let S={shops:{},todo:{},pack:{}};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem(LS)||'{}'))}catch(e){}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){alert('Storage full — remove a few photos.')}}
+function sh(id){if(!S.shops[id])S.shops[id]={v:false,verdict:'',cats:[],note:'',photos:[]};return S.shops[id]}
+
 let DB=null;
-function db(){ return new Promise((res,rej)=>{ if(DB) return res(DB);
-  const r=indexedDB.open('aqui-photos',1);
-  r.onupgradeneeded=()=>r.result.createObjectStore('p');
-  r.onsuccess=()=>{DB=r.result;res(DB)}; r.onerror=()=>rej(r.error); }); }
-async function putPhoto(k,blob){ const d=await db(); return new Promise((res,rej)=>{
-  const tx=d.transaction('p','readwrite'); tx.objectStore('p').put(blob,k);
-  tx.oncomplete=res; tx.onerror=()=>rej(tx.error); }); }
-async function getPhoto(k){ const d=await db(); return new Promise((res,rej)=>{
-  const rq=d.transaction('p','readonly').objectStore('p').get(k);
-  rq.onsuccess=()=>res(rq.result); rq.onerror=()=>rej(rq.error); }); }
-async function delPhoto(k){ const d=await db(); return new Promise(res=>{
-  const tx=d.transaction('p','readwrite'); tx.objectStore('p').delete(k); tx.oncomplete=res; }); }
-
-function shrink(file){ return new Promise(res=>{
-  const img=new Image(), url=URL.createObjectURL(file);
-  img.onload=()=>{ const M=1100, s=Math.min(1,M/Math.max(img.width,img.height));
-    const c=document.createElement('canvas'); c.width=img.width*s; c.height=img.height*s;
-    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
-    c.toBlob(b=>{URL.revokeObjectURL(url);res(b)},'image/jpeg',0.72); };
-  img.src=url; }); }
+function db(){return new Promise((res,rej)=>{if(DB)return res(DB);
+ const r=indexedDB.open('aqui-photos',1);
+ r.onupgradeneeded=()=>r.result.createObjectStore('p');
+ r.onsuccess=()=>{DB=r.result;res(DB)};r.onerror=()=>rej(r.error)})}
+async function putPhoto(k,b){const d=await db();return new Promise((res,rej)=>{
+ const tx=d.transaction('p','readwrite');tx.objectStore('p').put(b,k);tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}
+async function getPhoto(k){const d=await db();return new Promise((res,rej)=>{
+ const q=d.transaction('p','readonly').objectStore('p').get(k);q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)})}
+async function delPhoto(k){const d=await db();return new Promise(res=>{
+ const tx=d.transaction('p','readwrite');tx.objectStore('p').delete(k);tx.oncomplete=res})}
+function shrink(f){return new Promise(res=>{const img=new Image(),u=URL.createObjectURL(f);
+ img.onload=()=>{const M=1100,s=Math.min(1,M/Math.max(img.width,img.height));
+  const c=document.createElement('canvas');c.width=img.width*s;c.height=img.height*s;
+  c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+  c.toBlob(b=>{URL.revokeObjectURL(u);res(b)},'image/jpeg',.72)};img.src=u})}
 
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const maps=g=>`https://www.google.com/maps/search/?api=1&query=${g}`;
-const igurl=q=>`https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(q)}`;
+const ig=q=>`https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(q)}`;
 const allShops=()=>Object.entries(DISTRICTS).flatMap(([k,d])=>d.shops.map(s=>({...s,dk:k,dn:d.name,dc:d.c})));
 
-/* ══════════════ TABS ══════════════ */
-const TABS=[["days","Days"],["shops","Fabric"],["fair","The fair"],["stay","Hotels"],["near","Nearby"],["prep","Packing"],["report","Report"]];
-document.getElementById('tabs').innerHTML=TABS.map(([k,l],i)=>
-  `<button data-t="${k}" class="${i===0?'on':''}">${l}</button>`).join('');
-document.getElementById('tabs').addEventListener('click',e=>{
-  const b=e.target.closest('button'); if(!b)return;
-  document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
-  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.t));
-  window.scrollTo(0,0);
-  if(b.dataset.t==='report') drawReport();
-});
+/* ═══════════ TABS ═══════════ */
+const TABS=[["days","DAYS"],["shops","FABRIC"],["fair","THE FAIR"],["eat","EAT & DRINK"],["do","TO DO"],["stay","STAY"],["prep","PACK"],["report","REPORT"]];
+document.getElementById('tabs').innerHTML=TABS.map(([k,l],i)=>`<button data-t="${k}" class="${i?'':'on'}">${l}</button>`).join('');
+document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+ document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.t));
+ window.scrollTo(0,0); if(b.dataset.t==='report')drawReport()});
 
-/* ══════════════ DAYS ══════════════ */
+/* ═══════════ DAYS ═══════════ */
 function drawDays(){
-  const today=new Date();
-  const isSep=today.getFullYear()===2026&&today.getMonth()===8;
-  document.getElementById('v-days').innerHTML=`
-   <h2>Nine days</h2>
-   <p class="lede">Tap any day to open the running order, with travel time between stops. Built around two fixed points: the fair runs Wednesday to Friday, and every wholesale district closes on Sunday.</p>
-   ${DAYS.map(d=>`
-     <div class="card day ${isSep&&today.getDate()===d.d?'today':''}">
-       <div class="dtop" data-open="${d.d}"><span class="num">${d.d}</span><span class="dow">${d.dow} September</span></div>
-       <div class="ttl" data-open="${d.d}">${esc(d.t)}</div>
-       <div class="sm" data-open="${d.d}">${esc(d.sm)} &nbsp;·&nbsp; tap for the plan</div>
-       <div class="sched" id="sc-${d.d}" hidden>
-         ${d.stops.map(s=>s.m
-            ?`<div class="move">↓ ${esc(s.m)}</div>`
-            :`<div class="stop"><div class="t">${esc(s.t)}</div><div class="b"><div class="n">${esc(s.n)}</div><div class="d">${esc(s.d)}</div></div></div>`).join('')}
-         <div class="budget"><span>${esc(d.budget)}</span></div>
-       </div>
-     </div>`).join('')}`;
-  document.getElementById('v-days').addEventListener('click',e=>{
-    const h=e.target.closest('[data-open]'); if(!h)return;
-    const el=document.getElementById('sc-'+h.dataset.open); el.hidden=!el.hidden;
-  });
+ const now=new Date(),isSep=now.getFullYear()===2026&&now.getMonth()===8;
+ document.getElementById('v-days').innerHTML=`
+  <h2>Eleven days</h2>
+  <p class="lede">Tap a day for the running order and travel time between stops. Built around two fixed points: the fair runs Wednesday to Friday, and every wholesale district in İstanbul closes on Sunday.</p>
+  ${DAYS.map(d=>`<div class="card day ${isSep&&now.getDate()===d.d?'today':''}">
+    <div class="dtop" data-o="${d.d}"><span class="num">${d.d}</span><span class="dow">${esc(d.dow.toUpperCase())} SEPT</span></div>
+    <div class="ttl" data-o="${d.d}">${esc(d.t)}</div>
+    <div class="sm" data-o="${d.d}">${esc(d.sm)} &nbsp;·&nbsp; TAP</div>
+    <div class="sched" id="sc-${d.d}" hidden>
+      ${d.stops.map(s=>s.m?`<div class="move">↓ ${esc(s.m)}</div>`
+        :`<div class="stop"><div class="t">${esc(s.t)}</div><div><div class="n">${esc(s.n)}</div><div class="d">${esc(s.d)}</div></div></div>`).join('')}
+      <div class="budget">${esc(d.budget)}</div>
+    </div></div>`).join('')}`;
+ document.getElementById('v-days').addEventListener('click',e=>{const h=e.target.closest('[data-o]');if(!h)return;
+  const el=document.getElementById('sc-'+h.dataset.o);el.hidden=!el.hidden});
 }
 
-/* ══════════════ SHOPS ══════════════ */
+/* ═══════════ FABRIC ═══════════ */
 function shopCard(s){
-  const st=sh(s.id);
-  const tags=s.tags.map(t=>{
-    let c='tag';
-    if(/^Sun|English/.test(t))c='tag sun';
-    else if(/Closed|Check price|Inspect|Wholesale only/.test(t))c='tag shut';
-    else if(/Best|specialist|All trims|Open Sat/.test(t))c='tag star';
-    return `<span class="${c}">${esc(t)}</span>`}).join('');
-  const cats=s.cats.map(c=>`<span class="tag cat">${esc(c)}</span>`).join('');
-  return `<div class="card stripe shop ${st.v?'visited':''}" style="--c:${s.dc}" data-shop="${s.id}">
-   <div class="pad">
-    <h4>${esc(s.n)}</h4>
-    <p class="addr">${esc(s.a)}</p>
-    <p class="txt">${esc(s.x)}</p>
-    <div class="tags">${cats}</div>
-    <div class="tags">${tags}</div>
-    <div class="acts">
-      <a class="pri" href="${maps(s.g)}" target="_blank" rel="noopener">Map</a>
-      ${s.t?`<a href="tel:${s.t}">Call</a>`:''}
-      ${s.w?`<a href="https://${s.w}" target="_blank" rel="noopener">Site</a>`:''}
-      <a href="${igurl(s.ig)}" target="_blank" rel="noopener">Instagram</a>
-    </div>
-    <div class="track">
-      <div class="verd">
-        <button data-v="useful" class="${st.verdict==='useful'?'y':''}">Useful</button>
-        <button data-v="maybe" class="${st.verdict==='maybe'?'m':''}">Maybe</button>
-        <button data-v="no" class="${st.verdict==='no'?'n':''}">Not useful</button>
-      </div>
-      <p class="lbl">WHAT THEY HAD</p>
-      <div class="chips">${CATS.map(c=>
-        `<button data-cat="${esc(c)}" class="${st.cats.includes(c)?'on':''}">${esc(c)}</button>`).join('')}</div>
-      <p class="lbl">NOTES — prices, minimums, contact, lead time</p>
-      <textarea data-note placeholder="e.g. 220gsm viscose crepe, 180 TRY/m, min 50 m, ships via own agent. Ask for Mehmet.">${esc(st.note)}</textarea>
-      <div class="photos" data-ph></div>
-      <label class="addph">＋ Add photo<input type="file" accept="image/*" data-file></label>
-    </div>
-   </div></div>`;
+ const st=sh(s.id);
+ const tags=s.tags.map(t=>{let c='tag';
+  if(/^Sun|English|Open Sat/.test(t))c='tag ok';
+  else if(/Closed|Check price|Inspect|Wholesale only/.test(t))c='tag bad';
+  else if(/Best|specialist|All trims|Crystal/.test(t))c='tag gold';
+  return `<span class="${c}">${esc(t)}</span>`}).join('');
+ return `<div class="card shop ${st.v?'visited':''}" style="border-left:2px solid ${s.dc}" data-shop="${s.id}"><div class="pad">
+  <h4>${esc(s.n)}</h4><p class="addr">${esc(s.a)}</p><p class="txt">${esc(s.x)}</p>
+  <div class="tags">${s.cats.map(c=>`<span class="tag moon">${esc(c)}</span>`).join('')}</div>
+  <div class="tags">${tags}</div>
+  <div class="acts"><a class="pri" href="${maps(s.g)}" target="_blank" rel="noopener">MAP</a>
+   ${s.t?`<a href="tel:${s.t}">CALL</a>`:''}
+   ${s.w?`<a href="https://${s.w}" target="_blank" rel="noopener">SITE</a>`:''}
+   <a href="${ig(s.ig)}" target="_blank" rel="noopener">IG</a></div>
+  <div class="track">
+   <div class="verd">
+    <button data-v="useful" class="${st.verdict==='useful'?'y':''}">USEFUL</button>
+    <button data-v="maybe" class="${st.verdict==='maybe'?'m':''}">MAYBE</button>
+    <button data-v="no" class="${st.verdict==='no'?'n':''}">NO</button></div>
+   <p class="lbl">WHAT THEY HAD</p>
+   <div class="chips">${CATS.map(c=>`<button data-cat="${esc(c)}" class="${st.cats.includes(c)?'on':''}">${esc(c)}</button>`).join('')}</div>
+   <p class="lbl">NOTES — PRICE, MINIMUM, CONTACT, LEAD TIME</p>
+   <textarea data-note placeholder="220gsm viscose crepe · 180 TRY/m · min 50 m · ships via own agent · ask for Mehmet">${esc(st.note)}</textarea>
+   <div class="photos" data-ph></div>
+   <label class="addph">+ ADD PHOTO<input type="file" accept="image/*" data-file></label>
+  </div></div></div>`;
 }
-
 function drawShops(){
-  document.getElementById('v-shops').innerHTML=`
-   <h2>Where the fabric is</h2>
-   <p class="lede">Twenty-two suppliers, all of them fabric or textile trim — no garment wholesalers. Mark each one as you go and it builds the report.</p>
-   ${Object.entries(DISTRICTS).map(([k,d],i)=>`
-     <details class="dis" style="--c:${d.c}" ${i===0?'open':''}>
-       <summary>
-         <div class="dh"><div><h3>${esc(d.name)}</h3><p class="dsub">${esc(d.sub)}</p></div>
-         <div class="when">${esc(d.when)}</div></div>
-         <div class="cnt">${d.shops.length} suppliers — tap to open</div>
-       </summary>
-       <div class="dbody">
-         <div class="why"><b>WHY IT MATTERS</b>${esc(d.why)}</div>
-         ${d.shops.map(s=>shopCard({...s,dc:d.c})).join('')}
-       </div>
-     </details>`).join('')}
-   <div class="callout"><h4>Two districts we're skipping on purpose</h4>
-   <p>Merter and Laleli appear in almost every Istanbul fabric guide online, and both are wrong. They are hazır giyim — wholesale finished garments. Nothing there is sold by the metre.</p></div>`;
-  allShops().forEach(s=>renderPhotos(s.id));
+ document.getElementById('v-shops').innerHTML=`
+  <h2>Where the fabric is</h2>
+  <p class="lede">Twenty-two suppliers, every one of them fabric or textile trim — no garment wholesalers. Mark each as you go and it writes the report for you.</p>
+  ${Object.entries(DISTRICTS).map(([k,d],i)=>`
+   <details class="dis" style="--c:${d.c}" ${i?'':'open'}>
+    <summary><div class="dh"><div><h3>${esc(d.name)}</h3><p class="dsub">${esc(d.sub)}</p></div>
+     <div class="when">${esc(d.when)}</div></div>
+     <div class="cnt">${d.shops.length} SUPPLIERS — TAP</div></summary>
+    <div class="dbody"><div class="why"><b>WHY IT MATTERS</b>${esc(d.why)}</div>
+     ${d.shops.map(s=>shopCard({...s,dc:d.c})).join('')}</div></details>`).join('')}
+  <div class="note"><b>NOT ON THIS LIST, ON PURPOSE</b>Merter and Laleli appear in almost every İstanbul fabric guide online and both are wrong. They are hazır giyim — wholesale finished garments. Nothing there is sold by the metre.</div>`;
+ allShops().forEach(s=>renderPhotos(s.id));
 }
-
 async function renderPhotos(id){
-  const wrap=document.querySelector(`[data-shop="${id}"] [data-ph]`); if(!wrap)return;
-  const st=sh(id); wrap.innerHTML='';
-  for(const k of st.photos){
-    const b=await getPhoto(k); if(!b)continue;
-    const f=document.createElement('figure');
-    const im=document.createElement('img'); im.src=URL.createObjectURL(b); im.alt='';
-    const x=document.createElement('button'); x.textContent='×'; x.setAttribute('aria-label','Remove photo');
-    x.onclick=async()=>{ await delPhoto(k); st.photos=st.photos.filter(p=>p!==k); save(); renderPhotos(id); };
-    f.append(im,x); wrap.append(f);
-  }
+ const w=document.querySelector(`[data-shop="${id}"] [data-ph]`);if(!w)return;
+ const st=sh(id);w.innerHTML='';
+ for(const k of st.photos){const b=await getPhoto(k);if(!b)continue;
+  const f=document.createElement('figure'),im=document.createElement('img');
+  im.src=URL.createObjectURL(b);im.alt='';
+  const x=document.createElement('button');x.textContent='×';x.setAttribute('aria-label','Remove');
+  x.onclick=async()=>{await delPhoto(k);st.photos=st.photos.filter(p=>p!==k);save();renderPhotos(id)};
+  f.append(im,x);w.append(f)}
 }
-
 document.getElementById('v-shops').addEventListener('click',e=>{
-  const card=e.target.closest('[data-shop]'); if(!card)return;
-  const id=card.dataset.shop, st=sh(id);
-  const v=e.target.closest('[data-v]');
-  if(v){ st.verdict = st.verdict===v.dataset.v ? '' : v.dataset.v; st.v=!!st.verdict; save();
-    const d=DISTRICTS[allShops().find(s=>s.id===id).dk];
-    card.outerHTML=shopCard({...d.shops.find(s=>s.id===id),dc:d.c}); renderPhotos(id); return; }
-  const c=e.target.closest('[data-cat]');
-  if(c){ const k=c.dataset.cat;
-    st.cats = st.cats.includes(k) ? st.cats.filter(x=>x!==k) : st.cats.concat(k);
-    c.classList.toggle('on'); st.v=true; save(); return; }
-});
+ const card=e.target.closest('[data-shop]');if(!card)return;
+ const id=card.dataset.shop,st=sh(id),v=e.target.closest('[data-v]');
+ if(v){st.verdict=st.verdict===v.dataset.v?'':v.dataset.v;st.v=!!st.verdict;save();
+  const info=allShops().find(s=>s.id===id),d=DISTRICTS[info.dk];
+  card.outerHTML=shopCard({...d.shops.find(s=>s.id===id),dc:d.c});renderPhotos(id);return}
+ const c=e.target.closest('[data-cat]');
+ if(c){const k=c.dataset.cat;st.cats=st.cats.includes(k)?st.cats.filter(x=>x!==k):st.cats.concat(k);
+  c.classList.toggle('on');st.v=true;save()}});
 document.getElementById('v-shops').addEventListener('input',e=>{
-  if(e.target.matches('[data-note]')){ const id=e.target.closest('[data-shop]').dataset.shop;
-    sh(id).note=e.target.value; sh(id).v=true; save(); }
-});
+ if(e.target.matches('[data-note]')){const id=e.target.closest('[data-shop]').dataset.shop;
+  sh(id).note=e.target.value;sh(id).v=true;save()}});
 document.getElementById('v-shops').addEventListener('change',async e=>{
-  if(!e.target.matches('[data-file]'))return;
-  const f=e.target.files[0]; if(!f)return;
-  const id=e.target.closest('[data-shop]').dataset.shop, st=sh(id);
-  const blob=await shrink(f); const key=id+'-'+Date.now();
-  await putPhoto(key,blob); st.photos.push(key); st.v=true; save(); renderPhotos(id);
-  e.target.value='';
-});
+ if(!e.target.matches('[data-file]'))return;
+ const f=e.target.files[0];if(!f)return;
+ const id=e.target.closest('[data-shop]').dataset.shop,st=sh(id);
+ const b=await shrink(f),k=id+'-'+Date.now();
+ await putPhoto(k,b);st.photos.push(k);st.v=true;save();renderPhotos(id);e.target.value=''});
 
-/* ══════════════ FAIR ══════════════ */
+/* ═══════════ FAIR ═══════════ */
 document.getElementById('v-fair').innerHTML=`
  <h2>Texhibition</h2>
- <p class="lede">9–11 September, Istanbul Expo Center, Yeşilköy. Trade only, free, but you must register in advance at texhibitionist.com.</p>
- <div class="card stripe" style="--c:var(--bole)"><div class="pad">
-   <h4 style="margin:0 0 6px;font-size:16px">What it actually is</h4>
-   <p class="txt">Around 500 mills across five halls. It is not a market — nothing is sold off the stand and there is no finished clothing anywhere. What you see is swatch racks and sample books. You handle the cloth, ask composition, weight, width, minimum order and lead time, take a swatch and a card, and order afterwards.</p>
-   <div class="tags"><span class="tag">10:00–18:00</span><span class="tag star">Register as Wear Aqui</span><span class="tag">M2 → M1A, 50 min</span></div>
-   <div class="acts"><a class="pri" href="${maps('40.9891702,28.826161')}" target="_blank" rel="noopener">Map</a>
-   <a href="https://texhibitionist.com" target="_blank" rel="noopener">Register</a></div>
- </div></div>
- <div class="card stripe" style="--c:var(--bole)"><div class="pad">
-  <h4 style="margin:0 0 6px;font-size:16px">The minimum-order problem</h4>
-  <p class="txt">Mills typically want hundreds to a few thousand metres per colourway. At Wear Aqui's volumes most stands will be relationship-building rather than ordering. Two exceptions worth targeting: the <b>ReValue Stock Hub</b>, where certified deadstock comes in small lots by definition, and <b>Trend Lab</b>, which is free colour and material forecasting for next season.</p>
- </div></div>
+ <p class="lede">9–11 September, İstanbul Expo Center, Yeşilköy. Trade only, free, but you must register in advance at texhibitionist.com.</p>
+ <div class="card" style="border-left:2px solid var(--gold)"><div class="pad">
+  <h4 style="margin:0 0 7px;font-size:16.5px">What it actually is</h4>
+  <p class="txt" style="color:#D5CFE4">Around 500 mills across five halls. Not a market — nothing is sold off the stand and there is no finished clothing anywhere. What you see is swatch racks and sample books. You handle the cloth, ask composition, weight, width, minimum and lead time, take a swatch and a card, and order afterwards.</p>
+  <div class="tags"><span class="tag">10:00–18:00</span><span class="tag gold">REGISTER AS WEAR AQUI</span><span class="tag moon">M2 → M1A · 50 MIN</span></div>
+  <div class="acts"><a class="pri" href="${maps('40.9891702,28.826161')}" target="_blank" rel="noopener">MAP</a>
+   <a href="https://texhibitionist.com" target="_blank" rel="noopener">REGISTER</a></div></div></div>
+ <div class="note crys"><b>THE MINIMUM ORDER PROBLEM</b>Mills typically want hundreds to a few thousand metres per colourway. At AQUI's volumes most stands are relationship-building rather than ordering. Two exceptions worth targeting: the <b style="display:inline">ReValue Stock Hub</b>, where certified deadstock comes in small lots by definition, and <b style="display:inline">Trend Lab</b>, which is free colour and material forecasting for next season.</div>
+ <h3 class="sub">The three days</h3>
+ ${[["WED 9","Map the floor","Walk all five halls and buy nothing. Swatch, card, stand number, move on. Every hour spent negotiating today is an hour you cannot spend covering ground. ReValue Stock Hub first."],
+    ["THU 10","Negotiate","Straight back to the marked stands with the target list. Everyone is settled, nothing is packing up, and you already know the floor. Sit down and talk minimums properly."],
+    ["FRI 11","Close and ship","Half a day. Finish what's outstanding, collect final sample cuts, then leave to hand the rolls to the freight agent. Ship Friday — cargo offices keep short weekend hours."]]
+  .map(x=>`<div class="card"><div class="pad"><div class="tags"><span class="tag gold">${x[0]}</span></div>
+   <h4 style="margin:8px 0 5px;font-size:16px">${esc(x[1])}</h4><p class="txt" style="color:#D5CFE4">${esc(x[2])}</p></div></div>`).join('')}
  <h3 class="sub">Take with you</h3>
+ <div class="card"><div class="pad"><p class="txt" style="color:#D5CFE4">Both passports · 40 business cards · e-badges saved offline · the written spec (composition, weight, handle, target price per metre, realistic quantity) · photos of current AQUI pieces · tape measure · tote and marker for numbering swatches · power bank.</p>
+ <p class="txt" style="margin-top:10px;color:var(--dim);font-size:13px">Mills engage completely differently with "I need 300 m of 220gsm viscose crepe at around four dollars" than with someone browsing.</p></div></div>`;
+
+/* ═══════════ EAT & DRINK ═══════════ */
+document.getElementById('v-eat').innerHTML=`
+ <h2>Eat &amp; drink</h2>
+ <p class="lede">A dinner for every night, chosen around where you already are that day and checked against actual opening hours. Two need booking from Dubai — they're marked.</p>
+ <h3 class="sub">Dinner, every night</h3>
+ ${EAT.dinners.map(r=>`<div class="card" style="border-left:2px solid var(--gold)"><div class="pad">
+   <div class="tags"><span class="tag gold">${esc(r.day)}</span></div>
+   <h4 style="margin:9px 0 3px;font-size:16.5px">${esc(r.n)}</h4>
+   <p class="addr">${esc(r.a)}</p><p class="txt" style="color:#D5CFE4">${esc(r.x)}</p>
+   <div class="tags">${r.tags.map(t=>`<span class="tag ${/BOOK/.test(t)?'bad':''}">${esc(t)}</span>`).join('')}</div>
+   <div class="acts"><a class="pri" href="${maps(r.g)}" target="_blank" rel="noopener">MAP</a>${r.t?`<a href="tel:${r.t}">CALL</a>`:''}</div>
+  </div></div>`).join('')}
+ <h3 class="sub">Breakfast</h3>
+ ${EAT.breakfast.map(r=>`<div class="card" style="border-left:2px solid var(--crystal)"><div class="pad">
+   <h4 style="margin:0 0 3px;font-size:16px">${esc(r.n)}</h4><p class="addr">${esc(r.a)}</p>
+   <p class="txt" style="color:#D5CFE4">${esc(r.x)}</p>
+   <div class="tags">${r.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+   <div class="acts"><a class="pri" href="${maps(r.g)}" target="_blank" rel="noopener">MAP</a></div></div></div>`).join('')}
+ <h3 class="sub">Bars</h3>
+ ${EAT.bars.map(r=>`<div class="card" style="border-left:2px solid var(--moon)"><div class="pad">
+   <h4 style="margin:0 0 3px;font-size:16px">${esc(r.n)}</h4><p class="addr">${esc(r.a)}</p>
+   <p class="txt" style="color:#D5CFE4">${esc(r.x)}</p>
+   <div class="tags">${r.tags.map(t=>`<span class="tag ${/IN THE HOTEL|ONLY/.test(t)?'gold':''}">${esc(t)}</span>`).join('')}</div>
+   <div class="acts"><a class="pri" href="${maps(r.g)}" target="_blank" rel="noopener">MAP</a>${r.t?`<a href="tel:${r.t}">CALL</a>`:''}</div></div></div>`).join('')}
+ <div class="note"><b>ONE TO AVOID</b>Bebek Balıkçı, on the Bosphorus. It's 3.8 and the reviews are a steady drumbeat of bill shock — one diner was charged €116 for a small turbot. Mira and livar balık evi are on the same stretch of water, better rated and considerably cheaper.</div>`;
+
+/* ═══════════ TO DO ═══════════ */
+document.getElementById('v-do').innerHTML=`
+ <h2>Things to do</h2>
+ <p class="lede">Nine days is not all fabric. Saturday the 5th absorbs the old city on the way home from the trims, Sunday the 6th is Kadıköy, Saturday the 12th stops at one o'clock, and Sunday the 13th is Dolmabahçe. Everything below fits those windows.</p>
+ ${DO.map(g=>`<h3 class="sub">${esc(g.grp)}</h3><p class="lede">${esc(g.note)}</p>
+  ${g.items.map(i=>`<div class="card" style="border-left:2px solid ${g.c}"><div class="pad">
+    <h4 style="margin:0 0 3px;font-size:16px">${esc(i.n)}</h4>
+    ${i.w?`<p class="addr">${esc(i.w)}</p>`:''}
+    <p class="txt" style="color:#D5CFE4">${esc(i.d)}</p>
+    ${i.h?`<div class="tags"><span class="tag ${/CLOSED/.test(i.h)?'bad':(/free/.test(i.h)?'ok':'')}">${esc(i.h)}</span></div>`:''}
+    ${i.g?`<div class="acts"><a class="pri" href="${maps(i.g)}" target="_blank" rel="noopener">MAP</a></div>`:''}
+   </div></div>`).join('')}`).join('')}`;
+
+/* ═══════════ STAY ═══════════ */
+document.getElementById('v-stay').innerHTML=`
+ <h2>Where you're staying</h2>
+ <div class="hero">
+  <div class="badge">3 — 13 SEPTEMBER · 10 NIGHTS</div>
+  <h4>Hilton İstanbul Bomonti</h4>
+  <p class="meta">SILAHŞÖR CD 42, ŞİŞLİ · 4.8 FROM 24,275 · AED 9,702</p>
+  <div class="grid">
+   <div><div class="k">FABRIC STREETS</div><div class="v">18 min</div></div>
+   <div><div class="k">OSMANBEY METRO</div><div class="v">14 min</div></div>
+   <div><div class="k">NİŞANTAŞI</div><div class="v">25 min</div></div>
+   <div><div class="k">BOMONTIADA</div><div class="v">5 min</div></div>
+  </div>
+  <p class="txt" style="color:#D5CFE4">Highest-rated hotel of everything we looked at, and the best value. Cloud 34 — the 34th-floor bar — is upstairs. Bomontiada is five minutes on foot for evenings.</p>
+  <div class="acts"><a class="pri" href="${maps('41.0584649,28.9794965')}" target="_blank" rel="noopener">MAP</a>
+   <a href="tel:+902123753000">CALL HOTEL</a></div>
+ </div>
+ <div class="note"><b>CHECK IN ON THE 3RD, NOT THE 4TH</b>The flight lands 00:50 on Friday, so you reach the hotel around 02:00 — which the hotel counts as Thursday night. A booking starting on the 4th means no room at two in the morning.</div>
+ <h3 class="sub">Getting about from Bomonti</h3>
  <div class="card"><div class="pad">
-  <p class="txt">Both passports · 40 business cards · e-badges saved offline · the written spec (composition, weight, handle, target price per metre, realistic quantity) · photos of current pieces · tape measure · empty tote and a marker to number swatches · power bank.</p>
-  <p class="txt" style="margin-top:9px;color:var(--mute);font-size:13.5px">Mills engage completely differently with "I need 300 m of 220gsm viscose crepe at around four dollars" than with someone browsing.</p>
+  <p class="txt" style="color:#D5CFE4"><b style="color:var(--gold)">To the fabric streets</b> — 18 min walk, or a 5 min taxi at roughly 120 TRY. On Osmanbey days just take the cab both ways and stop thinking about it.</p>
+  <p class="txt" style="margin-top:11px;color:#D5CFE4"><b style="color:var(--gold)">To Nişantaşı</b> — 25 min walk is too far to do casually, so budget a couple of taxis on Saturday the 12th. About 130 TRY each way.</p>
+  <p class="txt" style="margin-top:11px;color:#D5CFE4"><b style="color:var(--gold)">To the fair</b> — walk 14 min to Osmanbey M2, then M2 to Yenikapı and M1A to DTM-İstanbul Fuar Merkezi. About 50 min total. Taxi on the days you're carrying samples.</p>
+  <p class="txt" style="margin-top:11px;color:#D5CFE4"><b style="color:var(--gold)">Fares</b> — 64.40 TRY flag-drop, 43.56 TRY per km, 210 TRY minimum. Use Uber or BiTaksi so the meter is enforced and the route is logged.</p>
+ </div></div>
+ <h3 class="sub">Car &amp; driver — Monday 7 September</h3>
+ <div class="card"><div class="pad">
+  <p class="txt" style="color:#D5CFE4">Book it through the Hilton Bomonti concierge — they arrange this routinely and you get a vetted driver with the hotel standing behind it. Email or WhatsApp them a week ahead.</p>
+  <p class="lbl" style="margin:14px 0 8px">SPECIFY EXACTLY THIS</p>
+  <p class="txt" style="color:#D5CFE4">Full day, 09:00 to roughly 18:30 · destination Zeytinburnu, <b style="display:inline;color:var(--gold)">Telsiz and Seyitnizam specifically</b> · six separate stops within the district · driver waits at each one · space in the boot for fabric rolls and sample bags · English not essential but helpful.</p>
+  <p class="txt" style="margin-top:11px;color:#D5CFE4">Expect roughly AED 700–900 for the day. Get the price agreed in writing before Monday. If the concierge can't help, ask them to recommend a transfer company and get three WhatsApp quotes.</p>
+  <p class="txt" style="margin-top:11px;color:var(--warn)">Why it's not optional: Zeytinburnu has almost no cruising taxis, app coverage thins out, and you'll be moving rolls between streets. Getting out of there at six in the evening without a driver is genuinely difficult.</p>
+  <div class="acts"><a class="pri" href="tel:+902123753000">CALL THE CONCIERGE</a></div>
  </div></div>`;
 
-/* ══════════════ HOTELS ══════════════ */
-document.getElementById('v-stay').innerHTML=`
- <h2>Hotels</h2>
- <p class="lede">All nine, with walking time to the places that matter. Osmanbey and Nişantaşı come first because the fabric streets, the clothes shopping and the metro to the fair are all within a few minutes.</p>
- ${HOTELS.map(h=>`
-  <div class="card hot ${h.pick?'pick':''}"><div class="pad">
-   ${h.badge?`<span class="badge ${/EXPENSIVE/.test(h.badge)?'warn':''}">${esc(h.badge)}</span>`:''}
-   <h4>${esc(h.n)}</h4>
-   <p class="meta">${esc(h.m)}</p>
-   <p class="price">${esc(h.p)} <small>9 nights, 2 adults · ${esc(h.note)}</small></p>
-   <div class="walk">${h.w.map(w=>`<div class="${/km/.test(w[1])?'far':''}">${esc(w[0])} <b>${esc(w[1])}</b></div>`).join('')}</div>
-   <p>${esc(h.x)}</p>
-   <div class="acts"><a class="pri" href="${maps(h.g)}" target="_blank" rel="noopener">Map</a></div>
-  </div></div>`).join('')}
- <div class="callout warn"><h4>Check in on the 3rd, not the 4th</h4>
- <p>The flight lands at 00:50 on Friday, so you reach the hotel around 02:00 — which every hotel counts as the night of Thursday the 3rd. A booking that starts on the 4th means no room at two in the morning. Either add the extra night or ring the hotel and get the early arrival confirmed in writing.</p></div>`;
-
-/* ══════════════ NEARBY ══════════════ */
-document.getElementById('v-near').innerHTML=`
- <h2>Things to see</h2>
- <p class="lede">Şişli is a working district, not a sightseeing one — but you are two metro stops from almost everything, and the Sultanahmet sights sit a short walk from where you are already going on Saturday.</p>
- ${NEARBY.map(g=>`
-   <h3 class="sub">${esc(g.grp)}</h3>
-   <p class="lede">${esc(g.note)}</p>
-   ${g.items.map(i=>`
-     <div class="card stripe" style="--c:${g.c}"><div class="pad">
-       <h4 style="margin:0 0 3px;font-size:16px;font-weight:650">${esc(i.n)}</h4>
-       <p class="addr">${esc(i.w)}</p>
-       <p class="txt">${esc(i.d)}</p>
-       <div class="tags"><span class="tag ${/CLOSED/.test(i.h)?'shut':(/free/.test(i.h)?'sun':'')}">${esc(i.h)}</span></div>
-       <div class="acts"><a class="pri" href="${maps(i.g)}" target="_blank" rel="noopener">Map</a></div>
-     </div></div>`).join('')}`).join('')}
- <div class="callout"><h4>The two days that are already free</h4>
- <p>Saturday the 5th — the trims finish by one o'clock and every famous sight is a walk away. Sunday the 13th — everything fabric is shut, the flight is not until 18:35, and Dolmabahçe opens at nine. Those two afternoons cover most of this list without costing a single working hour.</p></div>`;
-
-/* ══════════════ PREP ══════════════ */
+/* ═══════════ PREP ═══════════ */
 function drawPrep(){
-  const done=PREP.filter((_,i)=>S.prep[i]).length;
-  document.getElementById('v-prep').innerHTML=`
-   <h2>Before you fly</h2>
-   <p class="lede">Travel prep only. Shop visits are tracked on the Fabric tab.</p>
-   <p class="prog">${done===PREP.length?'All packed.':`${done} of ${PREP.length} done`}</p>
-   <div class="card check">${PREP.map((c,i)=>
-     `<label><input type="checkbox" data-p="${i}" ${S.prep[i]?'checked':''}><span>${esc(c)}</span></label>`).join('')}</div>
-   <button class="bigbtn ghost" id="clearprep">Clear all ticks</button>
-   <h3 class="sub">Turkish that changes the price</h3>
-   <p class="lede">Ask the price before showing interest. Opening in Turkish changes the number you're quoted — reviews flag foreigner pricing in both Osmanbey and Kadıköy.</p>
-   <div class="card phr">
-    ${[["Metresi kaç lira?","What is the price per metre?"],
-       ["Top fiyatı ne kadar?","What is the price for the full roll?"],
-       ["Minimum sipariş ne kadar?","What is the minimum order?"],
-       ["Gramajı kaç?","What is the weight, in gsm?"],
-       ["Bu kumaşın bileşimi nedir?","What is this fabric's composition?"],
-       ["Numune alabilir miyim?","May I take a sample?"],
-       ["Stokta ne kadar var?","How much do you have in stock?"],
-       ["Dubai'ye gönderiyor musunuz?","Do you ship to Dubai?"],
-       ["Nakit ödersem indirim var mı?","Is there a discount if I pay cash?"],
-       ["Daha iyi fiyat verebilir misiniz?","Can you give a better price?"]]
-      .map(p=>`<div><div class="tr">${esc(p[0])}</div><div class="en">${esc(p[1])}</div></div>`).join('')}
-   </div>
-   <div class="callout"><h4>Getting around</h4>
-   <p>Uber works but sends a licensed yellow taxi on the normal meter — no discount, but the route is tracked and no Turkish needed. BiTaksi has more drivers though it may want a Turkish number. Get an Istanbulkart on arrival; it covers metro, tram and the ferries.</p></div>`;
-  document.getElementById('clearprep').onclick=()=>{S.prep={};save();drawPrep()};
-  document.getElementById('v-prep').addEventListener('change',e=>{
-    if(!e.target.matches('[data-p]'))return;
-    S.prep[e.target.dataset.p]=e.target.checked; save(); drawPrep();
-  });
+ const td=TODO.filter((_,i)=>S.todo[i]).length;
+ const allPack=PACK.flatMap(g=>g.items),pd=allPack.filter((_,i)=>S.pack[i]).length;
+ document.getElementById('v-prep').innerHTML=`
+  <h2>Before you fly</h2>
+  <h3 class="sub">To book &amp; confirm</h3>
+  <p class="prog">${td} / ${TODO.length} DONE</p>
+  <div class="card check">${TODO.map((c,i)=>
+   `<label><input type="checkbox" data-td="${i}" ${S.todo[i]?'checked':''}><span>${esc(c)}</span></label>`).join('')}</div>
+  <h3 class="sub">Apps — install before you land</h3>
+  ${APPS.map(a=>`<div class="card"><div class="pad">
+    <h4 style="margin:0 0 4px;font-size:15.5px">${esc(a.n)}</h4>
+    <p class="txt" style="color:#D5CFE4;font-size:13.5px">${esc(a.x)}</p></div></div>`).join('')}
+  <h3 class="sub">Packing</h3>
+  <p class="prog">${pd} / ${allPack.length} PACKED</p>
+  ${(()=>{let n=-1;return PACK.map(g=>`<p class="lbl" style="margin:18px 0 8px">${esc(g.h.toUpperCase())}</p>
+    <div class="card check">${g.items.map(it=>{n++;return `<label><input type="checkbox" data-pk="${n}" ${S.pack[n]?'checked':''}><span>${esc(it)}</span></label>`}).join('')}</div>`).join('')})()}
+  <button class="bigbtn ghost" id="clr">CLEAR ALL TICKS</button>
+  <h3 class="sub">Turkish that changes the price</h3>
+  <p class="lede">Ask the price before showing interest. Reviews flag foreigner pricing in both Osmanbey and Kadıköy — opening in Turkish changes the number you're quoted.</p>
+  <div class="card phr">${PHRASES.map(p=>`<div><div class="tr">${esc(p[0])}</div><div class="en">${esc(p[1])}</div></div>`).join('')}</div>
+  <div class="note crys"><b>ONE LAST THING</b>Everything you record in this app — the verdicts, the fabric notes, the photos — stays on this phone. It doesn't sync between the two of you. Decide now who's doing the logging, or you'll finish the trip with half a report each.</div>`;
+ document.getElementById('clr').onclick=()=>{S.todo={};S.pack={};save();drawPrep()};
+ document.getElementById('v-prep').addEventListener('change',e=>{
+  if(e.target.matches('[data-td]')){S.todo[e.target.dataset.td]=e.target.checked;save();drawPrep()}
+  if(e.target.matches('[data-pk]')){S.pack[e.target.dataset.pk]=e.target.checked;save();drawPrep()}});
 }
 
-/* ══════════════ REPORT ══════════════ */
+/* ═══════════ REPORT ═══════════ */
 async function drawReport(){
-  const all=allShops();
-  const visited=all.filter(s=>sh(s.id).v);
-  const useful=visited.filter(s=>sh(s.id).verdict==='useful');
-  const maybe=visited.filter(s=>sh(s.id).verdict==='maybe');
-  const no=visited.filter(s=>sh(s.id).verdict==='no');
-  const catCount={};
-  useful.concat(maybe).forEach(s=>sh(s.id).cats.forEach(c=>catCount[c]=(catCount[c]||0)+1));
-  const top=Object.entries(catCount).sort((a,b)=>b[1]-a[1]);
-  let nPhotos=0; visited.forEach(s=>nPhotos+=sh(s.id).photos.length);
-
-  const block=async list=>{
-    let out='';
-    for(const s of list){
-      const st=sh(s.id);
-      let imgs='';
-      for(const k of st.photos){ const b=await getPhoto(k); if(b) imgs+=`<img src="${URL.createObjectURL(b)}" alt="">`; }
-      out+=`<div class="rep">
-        <div class="rn">${esc(s.n)}</div>
-        <div class="rm">${esc(s.dn)} · ${esc(s.a)}${s.t?' · '+esc(s.t):''}</div>
-        ${st.cats.length?`<div class="ri"><b>Had:</b> ${st.cats.map(esc).join(', ')}</div>`:''}
-        ${st.note?`<div class="ri">${esc(st.note)}</div>`:''}
-        ${imgs?`<div class="rp">${imgs}</div>`:''}
-      </div>`;
-    }
-    return out||'<div class="rep" style="color:var(--mute);font-size:13.5px">Nothing recorded yet.</div>';
-  };
-
-  document.getElementById('v-report').innerHTML=`
-   <h2>Trip report</h2>
-   <p class="lede">Builds itself from what you mark on the Fabric tab. Download it as a file, or print to PDF, when you get home.</p>
-   <div class="stats">
-     <div><b>${visited.length}</b><span>of ${all.length} visited</span></div>
-     <div><b>${useful.length}</b><span>useful</span></div>
-     <div><b>${nPhotos}</b><span>photos</span></div>
-   </div>
-   ${top.length?`<div class="card"><div class="pad"><p class="lbl">FABRICS FOUND, BY HOW MANY SUPPLIERS</p>
-     <div class="tags">${top.map(([c,n])=>`<span class="tag cat">${esc(c)} · ${n}</span>`).join('')}</div></div></div>`:''}
-   <div id="report">
-     <h4>Worth ordering from</h4>${await block(useful)}
-     <h4>Worth a second look</h4>${await block(maybe)}
-     <h4>Ruled out</h4>${no.length
-        ? no.map(s=>`<div class="rep"><div class="rn">${esc(s.n)}</div><div class="rm">${esc(s.dn)}${sh(s.id).note?' · '+esc(sh(s.id).note):''}</div></div>`).join('')
-        : '<div class="rep" style="color:var(--mute);font-size:13.5px">Nothing ruled out yet.</div>'}
-   </div>
-   <button class="bigbtn" id="dl">Download the report</button>
-   <button class="bigbtn ghost" id="pr">Print or save as PDF</button>
-   <footer>Wear Aqui · Istanbul, 4–13 September 2026. Everything you record stays on this phone.</footer>`;
-
-  document.getElementById('pr').onclick=()=>window.print();
-  document.getElementById('dl').onclick=async()=>{
-    let html=`<!DOCTYPE html><meta charset="utf-8"><title>Wear Aqui — Istanbul report</title>
-    <style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1A1D22}
-    h1{font-size:30px;margin-bottom:2px}h2{font-size:20px;margin-top:34px;border-bottom:1px solid #DED5C6;padding-bottom:5px}
-    .s{border:1px solid #DED5C6;padding:14px 16px;margin:10px 0;border-radius:3px}
-    .n{font-weight:700;font-size:17px}.m{color:#6C7480;font-size:13px;margin:3px 0 7px}
-    .c{font-size:14px}img{width:150px;height:150px;object-fit:cover;margin:6px 6px 0 0;border-radius:3px}
-    .sum{color:#6C7480}</style>
-    <h1>Wear Aqui — Istanbul sourcing</h1>
-    <p class="sum">4–13 September 2026 · ${visited.length} of ${all.length} suppliers visited · ${useful.length} rated useful · ${nPhotos} photos</p>`;
-    const sect=async(t,list)=>{ let o=`<h2>${t}</h2>`;
-      if(!list.length) o+='<p class="sum">None recorded.</p>';
-      for(const s of list){ const st=sh(s.id); let im='';
-        for(const k of st.photos){ const b=await getPhoto(k); if(b) im+=`<img src="${await toDataURL(b)}">`; }
-        o+=`<div class="s"><div class="n">${esc(s.n)}</div>
-        <div class="m">${esc(s.dn)} · ${esc(s.a)}${s.t?' · '+esc(s.t):''}${s.w?' · '+esc(s.w):''}</div>
-        ${st.cats.length?`<div class="c"><b>Had:</b> ${st.cats.map(esc).join(', ')}</div>`:''}
-        ${st.note?`<div class="c">${esc(st.note)}</div>`:''}${im}</div>`; }
-      return o; };
-    html+=await sect('Worth ordering from',useful);
-    html+=await sect('Worth a second look',maybe);
-    html+=await sect('Ruled out',no);
-    const blob=new Blob([html],{type:'text/html'});
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(blob); a.download='wear-aqui-istanbul-report.html'; a.click();
-  };
+ const all=allShops(),vis=all.filter(s=>sh(s.id).v);
+ const use=vis.filter(s=>sh(s.id).verdict==='useful'),may=vis.filter(s=>sh(s.id).verdict==='maybe'),no=vis.filter(s=>sh(s.id).verdict==='no');
+ const cc={};use.concat(may).forEach(s=>sh(s.id).cats.forEach(c=>cc[c]=(cc[c]||0)+1));
+ const top=Object.entries(cc).sort((a,b)=>b[1]-a[1]);
+ let np=0;vis.forEach(s=>np+=sh(s.id).photos.length);
+ const block=async list=>{let o='';
+  for(const s of list){const st=sh(s.id);let im='';
+   for(const k of st.photos){const b=await getPhoto(k);if(b)im+=`<img src="${URL.createObjectURL(b)}" alt="">`}
+   o+=`<div class="rep"><div class="rn">${esc(s.n)}</div>
+    <div class="rm">${esc(s.dn)} · ${esc(s.a)}${s.t?' · '+esc(s.t):''}</div>
+    ${st.cats.length?`<div class="ri"><b style="color:var(--gold)">Had:</b> ${st.cats.map(esc).join(', ')}</div>`:''}
+    ${st.note?`<div class="ri">${esc(st.note)}</div>`:''}
+    ${im?`<div class="rp">${im}</div>`:''}</div>`}
+  return o||'<div class="rep" style="color:var(--dim);font-size:13.5px">Nothing recorded yet.</div>'};
+ document.getElementById('v-report').innerHTML=`
+  <h2>Trip report</h2>
+  <p class="lede">Written from what you mark on the Fabric tab. Download it or print to PDF when you're home.</p>
+  <div class="stats"><div><b>${vis.length}</b><span>OF ${all.length} VISITED</span></div>
+   <div><b>${use.length}</b><span>USEFUL</span></div><div><b>${np}</b><span>PHOTOS</span></div></div>
+  ${top.length?`<div class="card"><div class="pad"><p class="lbl">FABRICS FOUND, BY SUPPLIER COUNT</p>
+   <div class="tags">${top.map(([c,n])=>`<span class="tag gold">${esc(c)} · ${n}</span>`).join('')}</div></div></div>`:''}
+  <h3 class="sub">Worth ordering from</h3>${await block(use)}
+  <h3 class="sub">Worth a second look</h3>${await block(may)}
+  <h3 class="sub">Ruled out</h3>${no.length?no.map(s=>`<div class="rep"><div class="rn">${esc(s.n)}</div>
+   <div class="rm">${esc(s.dn)}${sh(s.id).note?' · '+esc(sh(s.id).note):''}</div></div>`).join('')
+   :'<div class="rep" style="color:var(--dim);font-size:13.5px">Nothing ruled out yet.</div>'}
+  <button class="bigbtn" id="dl">DOWNLOAD THE REPORT</button>
+  <button class="bigbtn ghost" id="pr">PRINT / SAVE AS PDF</button>
+  <footer>AQUI · İSTANBUL · 3–13 SEPTEMBER 2026 · EVERYTHING YOU RECORD STAYS ON THIS PHONE</footer>`;
+ document.getElementById('pr').onclick=()=>window.print();
+ document.getElementById('dl').onclick=async()=>{
+  let h=`<!DOCTYPE html><meta charset="utf-8"><title>AQUI — İstanbul sourcing report</title>
+  <style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1A1D22}
+  h1{font-size:32px;margin-bottom:2px;letter-spacing:.02em}h2{font-size:19px;margin-top:34px;border-bottom:1px solid #DDD;padding-bottom:6px;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+  .s{border:1px solid #E2E2E2;padding:14px 16px;margin:10px 0;border-radius:3px}
+  .n{font-weight:700;font-size:17px}.m{color:#777;font-size:13px;margin:3px 0 7px}
+  .c{font-size:14px}img{width:150px;height:150px;object-fit:cover;margin:6px 6px 0 0;border-radius:3px}
+  .sum{color:#777}</style>
+  <h1>AQUI — İstanbul sourcing</h1>
+  <p class="sum">3–13 September 2026 · ${vis.length} of ${all.length} suppliers visited · ${use.length} rated useful · ${np} photos</p>`;
+  const sect=async(t,l)=>{let o=`<h2>${t}</h2>`;if(!l.length)o+='<p class="sum">None recorded.</p>';
+   for(const s of l){const st=sh(s.id);let im='';
+    for(const k of st.photos){const b=await getPhoto(k);if(b)im+=`<img src="${await toURL(b)}">`}
+    o+=`<div class="s"><div class="n">${esc(s.n)}</div>
+     <div class="m">${esc(s.dn)} · ${esc(s.a)}${s.t?' · '+esc(s.t):''}${s.w?' · '+esc(s.w):''}</div>
+     ${st.cats.length?`<div class="c"><b>Had:</b> ${st.cats.map(esc).join(', ')}</div>`:''}
+     ${st.note?`<div class="c">${esc(st.note)}</div>`:''}${im}</div>`}
+   return o};
+  h+=await sect('Worth ordering from',use);h+=await sect('Worth a second look',may);h+=await sect('Ruled out',no);
+  const b=new Blob([h],{type:'text/html'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(b);a.download='aqui-istanbul-report.html';a.click()};
 }
-function toDataURL(blob){ return new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.readAsDataURL(blob); }); }
+function toURL(b){return new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)})}
 
-/* ══════════════ GO ══════════════ */
-drawDays(); drawShops(); drawPrep();
-if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  navigator.serviceWorker.register('sw.js').catch(()=>{});
-}
+/* ═══════════ FALLING LIGHT ═══════════ */
+(function(){
+ const c=document.getElementById('rain');if(!c)return;
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const x=c.getContext('2d');let W,H,cols,drops;
+ const glyphs='AQUI◆✦✧·|/\\0123456789';
+ function size(){W=c.width=c.offsetWidth*devicePixelRatio;H=c.height=c.offsetHeight*devicePixelRatio;
+  cols=Math.floor(W/(14*devicePixelRatio));drops=Array(cols).fill(0).map(()=>Math.random()*-40)}
+ size();addEventListener('resize',size);
+ const tint=['#C9A961','#A9B8E8','#D8C3E8'];
+ function draw(){
+  x.fillStyle='rgba(10,8,18,0.12)';x.fillRect(0,0,W,H);
+  x.font=`${13*devicePixelRatio}px ui-monospace,monospace`;
+  for(let i=0;i<cols;i++){
+   const ch=glyphs[Math.floor(Math.random()*glyphs.length)];
+   x.fillStyle=tint[i%3];x.globalAlpha=Math.random()*.45+.12;
+   x.fillText(ch,i*14*devicePixelRatio,drops[i]*16*devicePixelRatio);
+   if(drops[i]*16*devicePixelRatio>H&&Math.random()>.982)drops[i]=0;
+   drops[i]+=0.35}
+  x.globalAlpha=1;requestAnimationFrame(draw)}
+ draw();
+})();
+
+drawDays();drawShops();drawPrep();
+if('serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 </script>
 </body>
 </html>
