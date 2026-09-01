@@ -1,0 +1,16 @@
+{
+  "name": "AQUI Istanbul — Fabric Sourcing",
+  "short_name": "AQUI Istanbul",
+  "description": "Fabric and textile sourcing field guide for Istanbul, 4-13 September 2026.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF8F3",
+  "theme_color": "#0E2C4B",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
